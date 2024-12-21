@@ -1,13 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { MDBContainer } from "mdb-react-ui-kit";
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import LocaleProvider from "./locale/LocaleProvider";
+import { AuthProvider } from "./auth/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
-    <App />
+    <MDBContainer>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <LocaleProvider>
+            <BrowserRouter>
+              <ToastContainer />
+              <App />
+            </BrowserRouter>
+          </LocaleProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </MDBContainer>
   </React.StrictMode>
 );
 
