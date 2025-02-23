@@ -1,73 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
-import DropdownIcon from "../../icons/DropdownIcon";
 import { motion } from "framer-motion";
 import { MenuOutlined } from "@ant-design/icons";
+import DropdownIcon from "../../icons/DropdownIcon";
 
 const Navbar = ({ routes }) => {
   const location = useLocation();
-  const currentUrl = location.pathname;
-  const mainUrl = currentUrl.split("/")[1];
-  const [activeTab, setActiveTab] = useState(null);
+  const mainUrl = location.pathname.split("/")[1];
+  const [activeTab, setActiveTab] = useState(`/${mainUrl}`);
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      setDropdownOpen(null);
+    }
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     setActiveTab(`/${mainUrl}`);
   }, [mainUrl]);
 
-  const handleDropdownToggle = (index) => {
-    setDropdownOpen(dropdownOpen === index ? null : index);
-  };
-
-  const handleMobileMenuToggle = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
   return (
-    <Container>
-      <LogoContainer to="home">
-        <LogoImg src={require("../../images/logo.png")} />
+    <Container onMouseLeave={() => setDropdownOpen(null)}>
+      <LogoContainer to="/home">
+        <LogoImg src={require("../../images/logo.png")} alt="Logo" />
       </LogoContainer>
-      <MobileMenuIcon onClick={handleMobileMenuToggle}>
+      <MobileMenuIcon onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
         <MenuOutlined />
       </MobileMenuIcon>
       <RightSide isOpen={mobileMenuOpen}>
         <NavItems>
           {routes.map((page, i) => (
-            <NavItemContainer
-              key={i}
-              onClick={(e) => {
-                e.preventDefault();
-                handleDropdownToggle(i);
-              }}
-            >
+            <NavItemContainer key={i}>
               <NavItem
                 to={page.requiredAccessToPage}
-                isActive={currentUrl.startsWith(page.requiredAccessToPage)}
-                onClick={() => {
-                  handleMobileMenuToggle();
-                }}
+                isActive={location.pathname.startsWith(
+                  page.requiredAccessToPage
+                )}
+                onClick={() => setMobileMenuOpen(false)}
+                onMouseEnter={() => setDropdownOpen(i)}
               >
                 {page.name}
               </NavItem>
-              {page?.subPages?.length && (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: "pointer",
-                  }}
+              {page?.subPages?.length > 0 && (
+                <DropdownToggle
+                  onClick={() => setDropdownOpen(dropdownOpen === i ? null : i)}
                 >
                   <DropdownIcon />
-                </div>
+                </DropdownToggle>
               )}
-
               {page.subPages && (
                 <DropdownMenu
                   isOpen={dropdownOpen === i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{
                     opacity: dropdownOpen === i ? 1 : 0,
                     y: dropdownOpen === i ? 0 : -10,
@@ -75,16 +62,13 @@ const Navbar = ({ routes }) => {
                   transition={{ duration: 0.3 }}
                 >
                   {page.subPages.map((subPage, j) => (
-                    <DropdownItemContainer key={j}>
-                      <DropdownItem
-                        to={`${page.requiredAccessToPage}/${subPage.path}`}
-                        onClick={() => {
-                          handleMobileMenuToggle();
-                        }}
-                      >
-                        {subPage.name}
-                      </DropdownItem>
-                    </DropdownItemContainer>
+                    <DropdownItem
+                      key={j}
+                      to={`${page.requiredAccessToPage}/${subPage.path}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {subPage.name}
+                    </DropdownItem>
                   ))}
                 </DropdownMenu>
               )}
@@ -99,140 +83,109 @@ const Navbar = ({ routes }) => {
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 8px 150px;
-  background-color: #fdfdfd;
+  background: #fdfdfd;
   align-items: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
   @media (max-width: 768px) {
-    padding: 8px 48px;
+    padding: 8px 24px;
   }
 `;
 
 const LogoContainer = styled(NavLink)`
   display: flex;
-  flex-direction: row;
-  width: 350px;
-  cursor: pointer;
+  align-items: center;
   text-decoration: none;
   color: #000;
-  align-items: center;
-  gap: 16px;
 `;
+
 const LogoImg = styled.img`
-  width: auto;
   height: 60px;
 `;
 
 const MobileMenuIcon = styled.div`
   display: none;
+  cursor: pointer;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1024px) {
     display: block;
-    position: absolute;
-    top: 50%;
-    right: 24px;
-    transform: translateY(-50%);
-    cursor: pointer;
   }
 `;
+
 const RightSide = styled.div`
   display: flex;
-  gap: 32px;
   align-items: center;
-  flex-direction: row;
+  gap: 24px;
 
-  @media (max-width: 1300px) {
-    flex-direction: column;
+  @media (max-width: 1024px) {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #fdfdfd;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    margin-bottom: 100px;
-    transition: max-height 0.3s ease;
-    overflow: auto;
-    max-height: ${(props) => (props.isOpen ? "fit-content" : "0px")};
+    background: #fdfdfd;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    max-height: ${(props) => (props.isOpen ? "fit-content" : "0")};
+    overflow: ${(props) => (props.isOpen ? "visible" : "hidden")};
+    transition: max-height 0.3s ease-in-out;
   }
 `;
 
 const NavItems = styled.div`
   display: flex;
-  flex-direction: row;
   gap: 24px;
 
-  @media (max-width: 1300px) {
-    padding: 16px;
-
+  @media (max-width: 1024px) {
     flex-direction: column;
-    gap: 16px;
+    padding: 16px;
   }
 `;
 
 const NavItemContainer = styled.div`
-  position: relative;
   display: flex;
-  gap: 8px;
   align-items: center;
+  position: relative;
 `;
 
 const NavItem = styled(NavLink)`
   font-size: 16px;
   font-weight: 500;
-  font-family: "Roboto" sans-serif;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  cursor: pointer;
   text-decoration: none;
   color: #000;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 
-  &.active {
-    color: #26395f;
-  }
-
+  &.active,
   &:hover {
     color: #26395f;
   }
 `;
 
+const DropdownToggle = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
 const DropdownMenu = styled(motion.div)`
-  display: ${(props) => (props.isOpen ? "block" : "none")};
-  opacity: ${(props) => (props.isOpen ? 1 : 0)};
-  transform: ${(props) =>
-    props.isOpen ? "translateY(0)" : "translateY(-10px)"};
   position: absolute;
   top: 150%;
   left: 0;
-  background-color: white;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  min-width: 100%;
+  min-width: 160px;
   padding: 8px;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  pointer-events: ${(props) => (props.isOpen ? "auto" : "none")};
-`;
-
-const DropdownItemContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  align-items: center;
+  display: ${(props) => (props.isOpen ? "block" : "none")};
 `;
 
 const DropdownItem = styled(NavLink)`
+  display: block;
   padding: 8px 16px;
-  font-size: 14px;
+  font-size: 16px;
   color: #222;
   text-decoration: none;
-  display: block;
-  white-space: nowrap;
-  font-size: 16px;
-  font-weight: 400;
-  font-family: "Roboto" sans-serif;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s;
 
   &:hover {
     opacity: 0.6;

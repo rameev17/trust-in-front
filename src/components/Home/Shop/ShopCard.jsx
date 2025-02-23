@@ -8,7 +8,7 @@ const ShopCard = ({ item, setSelectedItem, setIsOpen }) => {
   const handleOpen = useCallback(() => {
     setSelectedItem(item);
     setIsOpen(true);
-  });
+  }, [item, setSelectedItem, setIsOpen]);
 
   return (
     <CardContainer>
@@ -19,7 +19,7 @@ const ShopCard = ({ item, setSelectedItem, setIsOpen }) => {
           <PriceTitle>Цена:</PriceTitle>
           <PriceText>{formatNumberWithSpaces(item.price)} ₸</PriceText>
         </PriceContainer>
-        <Button onClick={() => handleOpen()}>Заказать</Button>
+        <Button onClick={() => handleOpen()}>Тапсырыс беру</Button>
       </InfoContainer>
     </CardContainer>
   );

@@ -109,6 +109,10 @@ const Content = styled.div`
   height: 100%;
   position: relative;
   gap: 48px;
+  @media (max-width: 768px) {
+    gap: 16px;
+    padding: 16px;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -117,8 +121,6 @@ const TextContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  @media (max-width: 768px) {
-  }
 `;
 
 const Counters = styled.div`

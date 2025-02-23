@@ -74,7 +74,7 @@ const List = styled.ul`
   list-style-type: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 20px;
   margin-top: 20px;
 

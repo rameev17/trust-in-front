@@ -6,7 +6,12 @@ const ImageModal = ({ isOpen, setIsOpen }) => {
     <ModalCenter isOpen={isOpen} setIsOpen={setIsOpen}>
       <img
         src={require("../../images/map.png")}
-        style={{ width: "auto", height: "auto" }}
+        style={{
+          width: "90vw",
+          height: "auto",
+          maxWidth: "90%",
+          maxHeight: "90%",
+        }}
       />
     </ModalCenter>
   );

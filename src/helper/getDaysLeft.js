@@ -8,7 +8,7 @@ export function getDaysLeft(targetDate) {
 
   // Return the result
   if (daysLeft <= 0) {
-    return "аяқталды";
+    return "Аяқталды";
   } else {
     return `${daysLeft} күн қалды`;
   }

@@ -17,7 +17,6 @@ const OrderModal = ({ isOpen, setIsOpen, selectedItem }) => {
   }, [isOpen, selectedItem, form]);
 
   const handleSubmit = (values) => {
-    console.log(values);
     mutate({
       itemId: selectedItem?.id,
       name: values.name,
@@ -33,7 +32,7 @@ const OrderModal = ({ isOpen, setIsOpen, selectedItem }) => {
 
   return (
     <Modal
-      title="Сделать заказ"
+      title="Тапсырыс беру"
       open={isOpen}
       onCancel={handleCancel}
       footer={null}
@@ -48,37 +47,37 @@ const OrderModal = ({ isOpen, setIsOpen, selectedItem }) => {
           }}
         >
           <Form.Item
-            label="Имя"
+            label="Аты"
             name="name"
-            rules={[{ required: true, message: "Введите свое имя" }]}
+            rules={[{ required: true, message: "Атыңызды енгізіңіз" }]}
           >
-            <Input placeholder="Введите свое имя" />
+            <Input placeholder="Атыңызды енгізіңіз" />
           </Form.Item>
 
           <Form.Item
-            label="Номер"
+            label="Нөмірі"
             name="phoneNumber"
             rules={[
-              { required: true, message: "Введите свой номер" },
+              { required: true, message: "Нөміріңізді енгізіңіз" },
               {
                 pattern: /^[0-9]+$/,
                 message: "Номер должен состоять из цифр",
               },
             ]}
           >
-            <Input placeholder="Введите свой номер" />
+            <Input placeholder="Нөмір сандардан тұруы керек" />
           </Form.Item>
 
-          <Form.Item label="Название заказа" name="itemName">
+          <Form.Item label="Тапсырыс атауы" name="itemName">
             <Input readOnly />
           </Form.Item>
 
           <ButtonWrapper>
             <Button type="primary" htmlType="submit">
-              Заказать
+              Тапсырыс беру
             </Button>
             <CancelButton type="default" onClick={handleCancel}>
-              Отменить
+              Бас тарту
             </CancelButton>
           </ButtonWrapper>
         </Form>

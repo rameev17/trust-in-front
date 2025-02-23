@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: "12px";
+}
+.all-button {
+  cursor: pointer;
+}
+.content-wrapper {
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+
+.card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.project-information-wrapper {
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-buttons-wrapper {
+  gap: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.project-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+}
+.spin {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+.spin-global {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

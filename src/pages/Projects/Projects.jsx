@@ -27,15 +27,7 @@ const Projects = () => {
 
   if (isLoading) {
     return (
-      <div
-        style={{
-          textAlign: "center",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className="spin">
         <Spin size="large" />
       </div>
     );
@@ -43,89 +35,53 @@ const Projects = () => {
 
   if (isError) {
     return (
-      <div
-        style={{
-          textAlign: "center",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Alert message={`Ошибка: ${error.message}`} type="error" />
+      <div className="spin">
+        <Alert message={`Қате: ${error.message}`} type="error" />
       </div>
     );
   }
 
   return (
-    <Container>
-      <Header>
-        <Title>Жобалар</Title>
-        <Button onClick={toggleStatus} style={{ marginBottom: "20px" }}>
-          Белсенді {projectStatus === "active" ? "емес" : ""} жобаларды көрсету
-        </Button>
-      </Header>
+    <div className="page-container">
+      <div className="content-wrapper">
+        <div className="header">
+          <h1 className="title primary-color">Жобалар</h1>
+          <Button onClick={toggleStatus}>
+            <p className="description description-color">
+              Белсенді {projectStatus === "active" ? "емес" : ""} жобаларды
+              көрсету
+            </p>
+          </Button>
+        </div>
 
-      <VacancyGrid>
-        {data?.projects.map((project) => (
-          <Card
-            key={project.id}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <ProjectsCard data={project} />
-          </Card>
-        ))}
-      </VacancyGrid>
+        {data?.projects.length === 0 && (
+          <p className="description description-color">
+            Қазіргі уақытта белсенді жобалар жоқ.
+          </p>
+        )}
 
-      <AntPagination
-        current={currentPage}
-        total={data?.total_projects || 0}
-        pageSize={pageSize}
-        onChange={handlePageChange}
-        showSizeChanger={false}
-        style={{ marginTop: "20px" }}
-      />
-    </Container>
+        <div className="card-wrapper">
+          {data?.projects.map((project) => (
+            <Card
+              key={project.id}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ProjectsCard data={project} />
+            </Card>
+          ))}
+        </div>
+        <AntPagination
+          current={currentPage}
+          total={data?.total_projects || 0}
+          pageSize={pageSize}
+          onChange={handlePageChange}
+          showSizeChanger={false}
+        />
+      </div>
+    </div>
   );
 };
-
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 20px;
-  min-height: 70vh;
-`;
-
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Title = styled.h1`
-  font-size: 36px;
-  line-height: 48px;
-  text-align: left;
-  font-weight: 700;
-  color: #26395f;
-  font-family: "Roboto", sans-serif;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
-`;
-
-const VacancyGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
 
 const Card = styled(motion.div)`
   background: #fff;

@@ -39,159 +39,137 @@ const Vacancies = () => {
   };
 
   return (
-    <Container>
-      <Header>
-        <Title>Ашық вакансиялар</Title>
-        <Button type="primary" onClick={showModal}>
-          Бос жұмыс орнын ұсыну
-        </Button>
-      </Header>
+    <div className="page-container">
+      <div className="content-wrapper">
+        <div className="header">
+          <h1 className="title primary-color">Ашық вакансиялар</h1>
 
-      <VacancyGrid>
-        {data?.vacancies.map((vacancy) => (
-          <Card
-            key={vacancy.id}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <CardTitle>{vacancy.position}</CardTitle>
-            <CardDescription>{vacancy.company_info}</CardDescription>
-            <LearnMore href={`/alumni/${vacancy.id}`}>Толығырақ →</LearnMore>
-          </Card>
-        ))}
-      </VacancyGrid>
+          <Button type="primary" onClick={showModal}>
+            Вакансия ұсыну
+          </Button>
+        </div>
 
-      <AntPagination
-        current={currentPage}
-        total={data?.total_vacancies || 0}
-        pageSize={page_size}
-        onChange={handlePageChange}
-        showSizeChanger={false}
-        style={{ marginTop: "20px" }}
-      />
+        <VacancyGrid>
+          {data?.vacancies.map((vacancy) => (
+            <Card
+              key={vacancy.id}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CardTitle>{vacancy.position}</CardTitle>
+              <CardDescription>{vacancy.company_info}</CardDescription>
+              <LearnMore href={`/alumni/${vacancy.id}`}>Толығырақ →</LearnMore>
+            </Card>
+          ))}
+        </VacancyGrid>
 
-      <Modal
-        title="Предложить вакансию"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={[
-          <Button key="submit" type="primary" onClick={handleOk}>
-            Отправить
-          </Button>,
-        ]}
-      >
-        <Form form={form} layout="vertical" name="vacancyForm">
-          <Form.Item
-            label="Название вакансии"
-            name="position"
-            rules={[
-              {
-                required: true,
-                message: "Пожалуйста, введите название вакансии!",
-              },
-            ]}
-          >
-            <Input placeholder="Введите название вакансии" />
-          </Form.Item>
-          <Form.Item
-            label="Информация о компании"
-            name="company_info"
-            rules={[
-              {
-                required: true,
-                message: "Пожалуйста, введите информацию о компании!",
-              },
-            ]}
-          >
-            <Input.TextArea
-              placeholder="Введите информацию о компании"
-              rows={4}
-            />
-          </Form.Item>
-          <Form.Item
-            label="Требования к кандидату"
-            name="candidate_requirements"
-            rules={[
-              {
-                required: true,
-                message: "Пожалуйста, введите требования к кандидату!",
-              },
-            ]}
-          >
-            <Input.TextArea
-              placeholder="Введите требования к кандидату"
-              rows={4}
-            />
-          </Form.Item>
-          <Form.Item
-            label="Обязанности"
-            name="responsibilities"
-            rules={[
-              { required: true, message: "Пожалуйста, введите обязанности!" },
-            ]}
-          >
-            <Input.TextArea placeholder="Введите обязанности" rows={4} />
-          </Form.Item>
-          <Form.Item
-            label="Условия"
-            name="conditions"
-            rules={[
-              {
-                required: true,
-                message: "Пожалуйста, введите условия работы!",
-              },
-            ]}
-          >
-            <Input.TextArea placeholder="Введите условия работы" rows={4} />
-          </Form.Item>
-          <Form.Item
-            label="Контактная информация"
-            name="contact_info"
-            rules={[
-              {
-                required: true,
-                message: "Пожалуйста, введите контактную информацию!",
-              },
-            ]}
-          >
-            <Input.TextArea
-              placeholder="Введите контактную информацию"
-              rows={4}
-            />
-          </Form.Item>
-        </Form>
-      </Modal>
-    </Container>
+        <AntPagination
+          current={currentPage}
+          total={data?.total_vacancies || 0}
+          pageSize={page_size}
+          onChange={handlePageChange}
+          showSizeChanger={false}
+          style={{ marginTop: "20px" }}
+        />
+
+        <Modal
+          title="Предложить вакансию"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          footer={[
+            <Button key="submit" type="primary" onClick={handleOk}>
+              Отправить
+            </Button>,
+          ]}
+        >
+          <Form form={form} layout="vertical" name="vacancyForm">
+            <Form.Item
+              label="Название вакансии"
+              name="position"
+              rules={[
+                {
+                  required: true,
+                  message: "Пожалуйста, введите название вакансии!",
+                },
+              ]}
+            >
+              <Input placeholder="Введите название вакансии" />
+            </Form.Item>
+            <Form.Item
+              label="Информация о компании"
+              name="company_info"
+              rules={[
+                {
+                  required: true,
+                  message: "Пожалуйста, введите информацию о компании!",
+                },
+              ]}
+            >
+              <Input.TextArea
+                placeholder="Введите информацию о компании"
+                rows={4}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Требования к кандидату"
+              name="candidate_requirements"
+              rules={[
+                {
+                  required: true,
+                  message: "Пожалуйста, введите требования к кандидату!",
+                },
+              ]}
+            >
+              <Input.TextArea
+                placeholder="Введите требования к кандидату"
+                rows={4}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Обязанности"
+              name="responsibilities"
+              rules={[
+                { required: true, message: "Пожалуйста, введите обязанности!" },
+              ]}
+            >
+              <Input.TextArea placeholder="Введите обязанности" rows={4} />
+            </Form.Item>
+            <Form.Item
+              label="Условия"
+              name="conditions"
+              rules={[
+                {
+                  required: true,
+                  message: "Пожалуйста, введите условия работы!",
+                },
+              ]}
+            >
+              <Input.TextArea placeholder="Введите условия работы" rows={4} />
+            </Form.Item>
+            <Form.Item
+              label="Контактная информация"
+              name="contact_info"
+              rules={[
+                {
+                  required: true,
+                  message: "Пожалуйста, введите контактную информацию!",
+                },
+              ]}
+            >
+              <Input.TextArea
+                placeholder="Введите контактную информацию"
+                rows={4}
+              />
+            </Form.Item>
+          </Form>
+        </Modal>
+      </div>
+    </div>
   );
 };
 
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 20px;
-  min-height: 70vh;
-`;
 
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Title = styled.h1`
-  font-size: 36px;
-  line-height: 48px;
-  text-align: left;
-  font-weight: 700;
-  color: #26395f;
-  font-family: "Roboto", sans-serif;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
-`;
 
 const VacancyGrid = styled.div`
   display: grid;

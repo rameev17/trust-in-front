@@ -11,7 +11,7 @@ const ImageCarousel = ({ data }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 760) {
+      if (window.innerWidth < 1300) {
         setCenterSlidePercentage(100);
         setCenterMode(false);
       } else {
@@ -93,7 +93,7 @@ const StyledCarousel = styled(Carousel)`
     height: 400px;
     object-fit: cover;
     @media (max-width: 768px) {
-      height: 300px;
+      height: 250px;
     }
   }
 `;

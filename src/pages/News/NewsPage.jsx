@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Spin, Button, message, Typography, Row, Col, Card } from "antd";
 import { useGetNewsById } from "../../api/news";
+import { RWebShare } from "react-web-share";
 
 const { Title, Paragraph } = Typography;
 
@@ -22,8 +23,10 @@ const NewsPage = () => {
   }, [data]);
 
   const shareNews = () => {
-    navigator.clipboard.writeText(window.location.href);
-    message.success("Сілтеме алмасу буферіне көшірілді!");
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => message.success("Сілтеме көшірілді"))
+      .catch(() => message.error("Сілтемені көшіру мүмкін болмады"));
   };
 
   if (isLoading) {
@@ -52,8 +55,7 @@ const NewsPage = () => {
           alignItems: "center",
           justifyContent: "center",
         }}
-      >
-      </div>
+      ></div>
     );
   }
 
@@ -100,14 +102,16 @@ const NewsPage = () => {
                 Жарияланған күні:{" "}
                 {new Date(news?.[0]?.created_at).toLocaleDateString()}
               </p>
-              <Button
-                type="primary"
-                icon={<i className="fas fa-share-alt"></i>}
-                onClick={shareNews}
-                style={{ fontSize: "16px" }}
+              <RWebShare
+                data={{
+                  title: news?.[0]?.title,
+                  text: news?.[0]?.description,
+                  url: window.location.href,
+                }}
+                onClick={() => console.log("shared successfully!")}
               >
-                Бөлісу
-              </Button>
+                <Button type="default">Бөлісу</Button>
+              </RWebShare>
             </div>
           </Card>
         </Col>

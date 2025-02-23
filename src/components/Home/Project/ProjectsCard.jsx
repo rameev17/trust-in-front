@@ -7,8 +7,6 @@ import {
 } from "../../../helper/getDaysLeft";
 
 const ProjectsCard = ({ data }) => {
-  const baseUrl = process.env.REACT_APP_BASE_URL;
-
   const donatedPercentage = useMemo(() => {
     if (data?.goal_money === 0) return 0;
     return (data?.donated_money / data?.goal_money) * 100;
@@ -20,13 +18,12 @@ const ProjectsCard = ({ data }) => {
   } else if (donatedPercentage >= 50) {
     progressColor = "#FAAD14";
   }
-  console.log(data);
   return (
     <CardContainer>
       <CardImageWrapper>
         <CardImage src={data?.image} />
         <OpenProjectButton href={`/projects/${data.id}`}>
-          Пожертвовать
+          Ұлес қосу
         </OpenProjectButton>
       </CardImageWrapper>
       <CardTitle>{data?.title}</CardTitle>

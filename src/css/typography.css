@@ -1,0 +1,68 @@
+h1,
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2,
+.subtitle {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+h3,
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+p,
+.description {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+p,
+.nav-link-text {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.small-text {
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.caption {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  h1,
+  .title {
+    font-size: 2rem;
+  }
+  h2,
+  .subtitle {
+    font-size: 1.75rem;
+  }
+  h3,
+  .section-title {
+    font-size: 1.5rem;
+  }
+  p,
+  .description {
+    font-size: 0.9375rem;
+  }
+  p,
+  .nav-link-text {
+    font-size: 0.9375rem;
+  }
+  .small-text {
+    font-size: 0.8125rem;
+  }
+  .caption {
+    font-size: 0.6875rem;
+  }
+}

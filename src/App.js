@@ -1,5 +1,9 @@
-import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
+import "../src/css/typography.css";
+import "../src/css/text-colors.css";
+import "../src/css/project.css";
+
+import Navbar from "./components/Navbar/Navbar";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
@@ -118,10 +122,10 @@ const NavbarWrapper = styled.div`
 
   left: 0;
   width: 100%;
-  z-index: 100; /* Adjust z-index as needed */
+  z-index: 100;
   background-color: ${({ isNavbarFixed }) =>
-    isNavbarFixed ? "#222222" : "#fdfdfd"}; /* Change background color */
-  transition: background-color 0.3s ease; /* Smooth transition */
+    isNavbarFixed ? "#222222" : "#fdfdfd"};
+  transition: background-color 0.3s ease;
 `;
 
 export default App;

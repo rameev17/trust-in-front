@@ -62,7 +62,7 @@ const ImageCarouselWithModal = ({
       visible={isModalVisible}
       onCancel={handleCancel}
       footer={null}
-      width={800}
+      width={1000}
     >
       <StyledCarousel
         showArrows={true}
@@ -90,7 +90,7 @@ const ImageCarouselWithModal = ({
 const StyledCarousel = styled(Carousel)`
   .carousel .slide img {
     width: auto;
-    height: 500px;
+    height: 1000px;
     object-fit: cover;
     @media (max-width: 768px) {
       height: 300px;

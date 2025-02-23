@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const DonationModal = ({ isOpen, setIsOpen }) => {
   return (
-    <ModalCenter isOpen={isOpen} setIsOpen={setIsOpen} width={"400px"}>
+    <ModalCenter isOpen={isOpen} setIsOpen={setIsOpen} width={"300px"}>
       <img src={require("../../images/donateQr.PNG")} />
       <Link>
         Осы{" "}
