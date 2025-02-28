@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { formatNumberWithSpaces } from "../../../helper/getDaysLeft";
 import { AppstoreAddOutlined, UserOutlined } from "@ant-design/icons";
+import { TEXT_COLORS } from "../../../helper/constants";
 
 const CardContainer = ({ hanleOpenSubscriptionModal, cards }) => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -140,9 +141,9 @@ const Description = styled.div`
 `;
 
 const Button = styled.div`
-  background-color: #52c41a;
+  background-color: ${TEXT_COLORS.SECONDARY_COLOR};
   color: white;
-  border: 1px solid #52c41a;
+  border: 1px solid ${TEXT_COLORS.SECONDARY_COLOR};
   border-radius: 12px;
   text-align: center;
   font-weight: 700;
@@ -153,8 +154,8 @@ const Button = styled.div`
 
   &:hover {
     background-color: white;
-    color: #52c41a;
-    border-color: #52c41a;
+    color: ${TEXT_COLORS.SECONDARY_COLOR};
+    border-color: ${TEXT_COLORS.SECONDARY_COLOR};
   }
 `;
 

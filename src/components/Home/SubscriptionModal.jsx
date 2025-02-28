@@ -2,6 +2,7 @@ import React from "react";
 import ModalCenter from "../Modal";
 import styled from "styled-components";
 import { Input } from "antd";
+import { TEXT_COLORS } from "../../helper/constants";
 
 const SubscriptionModal = ({ isOpen, setIsOpen, selectedPlan }) => {
   return (
@@ -39,7 +40,7 @@ const Title = styled.div`
   line-height: 32px;
   text-align: left;
   font-weight: 700;
-  color: #26395f;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   font-family: "Roboto", sans-serif;
 `;
 const PriceContainer = styled.div`
@@ -69,9 +70,9 @@ const PriceText = styled.p`
   font-family: "Roboto", sans-serif;
 `;
 const Button = styled.div`
-  background-color: #26395f;
+  background-color: ${TEXT_COLORS.PRIMARY_COLOR};
   color: white;
-  border: 1px solid #26395f;
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
   border-radius: 12px;
   text-align: center;
   font-weight: 700;
@@ -82,8 +83,8 @@ const Button = styled.div`
 
   &:hover {
     background-color: white;
-    color: #26395f;
-    border-color: #26395f;
+    color: ${TEXT_COLORS.PRIMARY_COLOR};
+    border-color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 

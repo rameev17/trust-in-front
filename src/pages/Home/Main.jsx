@@ -53,7 +53,7 @@ const Main = () => {
       />
       <FixedButton
         src={require("../../images/donate.png")}
-        hoverSrc={require("../../images/donateHover.jpg")}
+        hoverSrc={require("../../images/donateHover.png")}
         onClick={() => hanleOpenDonationModal()}
       />
     </Container>

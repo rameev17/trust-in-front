@@ -5,6 +5,7 @@ import {
   formatNumberWithSpaces,
   getDaysLeft,
 } from "../../../helper/getDaysLeft";
+import { TEXT_COLORS } from "../../../helper/constants";
 
 const ProjectsCard = ({ data }) => {
   const donatedPercentage = useMemo(() => {
@@ -73,7 +74,7 @@ const OpenProjectButton = styled.a`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px 20px;
-  background-color: #26395f;
+  background-color: ${TEXT_COLORS.PRIMARY_COLOR};
   color: white;
   border: none;
   border-radius: 5px;
@@ -85,7 +86,7 @@ const OpenProjectButton = styled.a`
   cursor: pointer;
 
   &:hover {
-    background-color: #26395f;
+    background-color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 const CardImage = styled.img`

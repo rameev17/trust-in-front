@@ -1,37 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const teamData = [
   {
-    name: "Салыбеков Санжар Бахытулы",
+    name: "Ануарбек Хайрым",
     role: "Атқарушы директор",
-    year: "Тараз БИЛ ‘14",
-    contact: "+7 747 914 1214",
-    image: require("../../images/sanzh.png"),
+    year: "Есік БИЛ ‘06",
+    contact: "+7 707 788 70 20",
+    image: require("../../images/kenes1.jpg"),
   },
   {
-    name: "Рысбеков Руслан Серікұлы",
+    name: "Елемесов Ақжол",
     role: "Астана қ. студент менеджері",
-    year: "Тараз БИЛ ‘23",
-    contact: "+7 707 218 3359",
-    image: require("../../images/kenes1.png"),
+    year: "Есік БИЛ ‘11",
+    contact: "+7 707 363 4115",
+    image: require("../../images/kenes2.JPG"),
   },
   {
-    name: "Бахыт Алдияр Еркеғалиұлы",
+    name: "Абдулла Әбілмансұр",
     role: "Алматы қ. студент менеджері",
-    year: "Тараз БИЛ ‘24",
-    contact: "+7 777 589 7444",
-    image: require("../../images/kenes2.png"),
+    year: "Есік БИЛ ‘23",
+    contact: "+7 708 718 3998",
+    image: require("../../images/kenes3.PNG"),
   },
 ];
 const TeamPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleFounders = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <PageContainer>
       <Title>Біздің команда</Title>
@@ -54,34 +48,34 @@ const TeamPage = () => {
       <Title>Бірлестіктің құрылтайшылары</Title>
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Балтабаев Асылхан Айдарханович ‘98
+          Нұрәлім Ұлан Нұрділдаұлы
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Асембаев Мухит Миятбекович ‘98
+          Смаилов Асет Есенбекович
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Тулебаев Жомарт Уалиханович ‘98
+          Омар Заңғар Омарұлы
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Рахмани Жанат Рахманович ‘00
+          Рахимбеков Берик
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Сарымбеков Мурат Серикович ‘00
+          Сагинбеков Арай Амангельдыевич
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Суханов Борис Юрьевич ‘00
+          Акаев Ернар Нурланович
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Асранқұл Талгат Болатбекович ‘00
+          Нұрмахан Ернар Серікұлы
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Пусурманов Марат Утегулович ‘05
+          Нурсапаев Маргулан Кахарманович
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Айданов Азамат Ғалымұлы ‘13
+          Серік Әділет Саятұлы
         </ListItem>
         <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Сарсен Айдархан Аянұлы ‘14
+          Нұрболат Дінмұхамед Нұрболатұлы
         </ListItem>
       </div>
     </PageContainer>
@@ -106,7 +100,7 @@ const Title = styled.h1`
   line-height: 48px;
   text-align: center;
   font-weight: 700;
-  color: #26395f;
+  color: #095d6a;
   font-family: "Roboto", sans-serif;
   margin-left: 10px;
   width: 100%;

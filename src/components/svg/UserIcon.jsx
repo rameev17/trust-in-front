@@ -1,7 +1,8 @@
 import * as React from "react";
+import { TEXT_COLORS } from "../../helper/constants";
 const UserIcon = (props) => (
   <svg
-    fill="#26395F"
+    fill={`${TEXT_COLORS.PRIMARY_COLOR}`}
     width="26px"
     height="26px"
     viewBox="0 0 42 42"

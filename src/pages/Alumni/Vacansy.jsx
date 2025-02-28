@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useCreateVacancy, useGetVacansy } from "../../api/vacansy";
 import { Modal, Form, Input, Pagination as AntPagination } from "antd";
+import { TEXT_COLORS } from "../../helper/constants";
 
 const Vacancies = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -169,8 +170,6 @@ const Vacancies = () => {
   );
 };
 
-
-
 const VacancyGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -219,7 +218,7 @@ const CardDescription = styled.p`
 const LearnMore = styled.a`
   display: inline-block;
   margin-top: 10px;
-  color: #26395f;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   text-decoration: none;
   font-weight: bold;
 
@@ -229,9 +228,9 @@ const LearnMore = styled.a`
 `;
 
 const Button = styled.button`
-  background-color: #26395f;
+  background-color: ${TEXT_COLORS.PRIMARY_COLOR};
   color: white;
-  border: 1px solid #26395f;
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
   border-radius: 12px;
   text-align: center;
   font-weight: 700;
@@ -241,8 +240,8 @@ const Button = styled.button`
   cursor: pointer;
   &:hover {
     background-color: white;
-    color: #26395f;
-    border-color: #26395f;
+    color: ${TEXT_COLORS.PRIMARY_COLOR};
+    border-color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 

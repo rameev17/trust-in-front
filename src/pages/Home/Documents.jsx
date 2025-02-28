@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { TEXT_COLORS } from "../../helper/constants";
 
 const DocumentPage = () => {
   const openDOCX = (fileName) => {
@@ -67,7 +68,7 @@ const Title = styled.h1`
   line-height: 48px;
   text-align: center;
   font-weight: 700;
-  color: #26395f;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   font-family: "Roboto", sans-serif;
   margin-left: 10px;
   width: 100%;
@@ -82,7 +83,7 @@ const DocumentList = styled.div`
 `;
 
 const DocumentCard = styled.div`
-  background-color: #26395f;
+  background-color: ${TEXT_COLORS.PRIMARY_COLOR};
   color: white;
   width: 250px;
   padding: 20px;
@@ -104,7 +105,7 @@ const Button = styled.button`
   background-color: white;
   border: none;
   padding: 10px 20px;
-  color: #26395f;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   font-size: 16px;
   margin-top: 10px;
   cursor: pointer;

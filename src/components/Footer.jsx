@@ -17,22 +17,22 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <Column>
-          <Logo src={require("../images/footerLogo.png")} alt="Company Logo" />
+          <Logo src={require("../images/logo.png")} alt="Company Logo" />
           <SocialIcons>
             {[
               {
                 icon: faTelegram,
-                link: "https://t.me/trustincom",
+                link: "https://t.me/+XNtchxLkWrgxODMy",
                 label: "Telegram",
               },
               {
                 icon: faWhatsapp,
-                link: "https://chat.whatsapp.com/HP14Q5lucYpFHCpoEENVFK",
+                link: "https://chat.whatsapp.com/Fx5mmgJjLjw9xXSOSEwCHT",
                 label: "WhatsApp",
               },
               {
                 icon: faInstagram,
-                link: "https://www.instagram.com/trustin.kz/profilecard",
+                link: "https://www.instagram.com/yessik_alumni?igsh=MWxqenptbXVya3lpNw==",
                 label: "Instagram",
               },
             ].map(({ icon, link, label }) => (
@@ -48,11 +48,9 @@ const Footer = () => {
             ))}
           </SocialIcons>
           <ContactLinks>
-            <a href="tel:+77479141214">📞 +7 (747) 914 1214</a>
+            <a href="tel:+77479141214">📞 +7 (707) 788 7020</a>
             <br />
-            <a href="mailto:trustincommunity@gmail.com">
-              📩 trustincommunity@gmail.com
-            </a>
+            <a href="mailto:agalqa@gmail.com">📩 agalqa@gmail.com</a>
           </ContactLinks>
         </Column>
 
@@ -117,8 +115,7 @@ const Footer = () => {
         ))}
       </FooterContent>
       <FooterText>
-        © 2024 Тараз ҚТЛ/БИЛ түлектерінің “Trust in Community” атты қоғамдық
-        бірлестігі
+        © 2024 Есік ҚТЛ/БИЛ түлектерінің “Agalqa” атты қоғамдық бірлестігі
       </FooterText>
     </FooterContainer>
   );

@@ -28,11 +28,11 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #26395f;
+  background: #095D6A;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #26395f;
+  background: #095D6A;
 }
 
 .page-container {

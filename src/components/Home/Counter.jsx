@@ -59,7 +59,7 @@ const CounterLabel = styled.span`
   margin-top: 10px;
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  border-top: 3px solid #cab390;
+  border-top: 3px solid #fbbc58;
   padding-top: 10px;
   width: 100%;
 `;

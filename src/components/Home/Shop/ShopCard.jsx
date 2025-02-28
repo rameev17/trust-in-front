@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { formatNumberWithSpaces } from "../../../helper/getDaysLeft";
+import { TEXT_COLORS } from "../../../helper/constants";
 
 const ShopCard = ({ item, setSelectedItem, setIsOpen }) => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -79,15 +80,15 @@ const PriceText = styled.p`
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
-  color: #26395f;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   font-family: "Roboto" sans-serif;
   text-transform: uppercase;
 `;
 
 const Button = styled.div`
-  background-color: #26395f;
+  background-color: ${TEXT_COLORS.PRIMARY_COLOR};
   color: white;
-  border: 1px solid #26395f;
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
   border-radius: 12px;
   text-align: center;
   font-weight: 700;
@@ -97,8 +98,8 @@ const Button = styled.div`
   cursor: pointer;
   &:hover {
     background-color: white;
-    color: #26395f;
-    border-color: #26395f;
+    color: ${TEXT_COLORS.PRIMARY_COLOR};
+    border-color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 export default ShopCard;

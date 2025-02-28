@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Pagination as AntPagination, Spin } from "antd";
 import NewsCard from "../../components/Home/News/NewsCard";
 import { useGetFilteredNews } from "../../api/news";
+import { TEXT_COLORS } from "../../helper/constants";
 
 const News = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -103,7 +104,7 @@ const Title = styled.h1`
   line-height: 48px;
   text-align: left;
   font-weight: 700;
-  color: #26395f;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   font-family: "Roboto", sans-serif;
 
   @media (max-width: 768px) {

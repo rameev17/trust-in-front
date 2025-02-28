@@ -1,6 +1,7 @@
 import React from "react";
 import ModalCenter from "../Modal";
 import styled from "styled-components";
+import { TEXT_COLORS } from "../../helper/constants";
 
 const DonationModal = ({ isOpen, setIsOpen }) => {
   return (
@@ -30,7 +31,7 @@ const Link = styled.div`
   margin: 0;
   a {
     cursor: pointer;
-    color: #26395f;
+    color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 export default DonationModal;

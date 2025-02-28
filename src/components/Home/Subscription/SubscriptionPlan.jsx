@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CardContainer from "./SubscriptionPlanCards";
 import { useGetSubscription } from "../../../api/subscription";
+import { TEXT_COLORS } from "../../../helper/constants";
 
 const SubscriptionPlan = ({ hanleOpenSubscriptionModal }) => {
   const { data } = useGetSubscription();
@@ -48,7 +49,7 @@ const Link = styled.div`
   margin: 0;
   a {
     cursor: pointer;
-    color: #26395f;
+    color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 export default SubscriptionPlan;

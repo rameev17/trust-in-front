@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Form, Input, Modal } from "antd";
 import styled from "styled-components";
 import { useCreateOrder } from "../../../api/shop";
+import { TEXT_COLORS } from "../../../helper/constants";
 
 const OrderModal = ({ isOpen, setIsOpen, selectedItem }) => {
   const [form] = Form.useForm();
@@ -99,9 +100,9 @@ const ButtonWrapper = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: #26395f;
+  background-color: ${TEXT_COLORS.PRIMARY_COLOR};
   color: white;
-  border: 1px solid #26395f;
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
   border-radius: 12px;
   text-align: center;
   font-weight: 700;
@@ -111,14 +112,14 @@ const Button = styled.button`
   cursor: pointer;
   &:hover {
     background-color: white;
-    color: #26395f;
-    border-color: #26395f;
+    color: ${TEXT_COLORS.PRIMARY_COLOR};
+    border-color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 const CancelButton = styled.button`
   background-color: white;
-  color: #26395f;
-  border: 1px solid #26395f;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
   border-radius: 12px;
   text-align: center;
   font-weight: 700;
@@ -128,8 +129,8 @@ const CancelButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: white;
-    color: #26395f;
-    border-color: #26395f;
+    color: ${TEXT_COLORS.PRIMARY_COLOR};
+    border-color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 export default OrderModal;

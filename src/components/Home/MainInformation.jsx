@@ -26,8 +26,8 @@ const MainInformation = ({ hanleOpenImageModal }) => {
         <Content>
           <TextContainer>
             <Title>
-              Тараз ҚТЛ/БИЛ түлектерінің{" "}
-              <Title style={{ color: "#cab390" }}>“Trust in Community”</Title>
+              Есік ҚТЛ (қазіргі БИЛ) түлектерінің{" "}
+              <Title style={{ color: "#FBBC58" }}>“AĠALQA”</Title>
             </Title>
             <Title>атты қоғамдық бірлестігі</Title>
           </TextContainer>
@@ -75,7 +75,7 @@ const ImageContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(${require("../../images/back.png")});
+    background-image: url(${require("../../images/back.jpg")});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

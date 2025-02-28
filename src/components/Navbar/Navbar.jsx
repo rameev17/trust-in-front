@@ -4,6 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MenuOutlined } from "@ant-design/icons";
 import DropdownIcon from "../../icons/DropdownIcon";
+import { TEXT_COLORS } from "../../helper/constants";
 
 const Navbar = ({ routes }) => {
   const location = useLocation();
@@ -157,7 +158,7 @@ const NavItem = styled(NavLink)`
 
   &.active,
   &:hover {
-    color: #26395f;
+    color: ${TEXT_COLORS.PRIMARY_COLOR};
   }
 `;
 
