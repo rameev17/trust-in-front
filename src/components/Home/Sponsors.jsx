@@ -12,6 +12,9 @@ const SponsorsContainer = () => {
         <h1 className="title primary-color">Демеушілер</h1>
       </div>
 
+      {!sponsors?.length && !sponsors && (
+        <p className="description description-color">Демеушілер жоқ</p>
+      )}
       <Container>
         {sponsors?.map((sponsor) => (
           <SponsorImage

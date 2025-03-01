@@ -20,7 +20,9 @@ const ProjectsContainer = (news) => {
           <p className="nav-link-text primary-color">Барлық жобалар →</p>
         </div>
       </div>
-      {!data && <p className="description description-color">Жобалар жоқ</p>}
+      {!data?.length && !data && (
+        <p className="description description-color">Жобалар жоқ</p>
+      )}
 
       <Cards>
         {filteredData?.map((project, index) => (

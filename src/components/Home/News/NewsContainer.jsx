@@ -19,7 +19,9 @@ const NewsContainer = () => {
           <p className="nav-link-text primary-color">Барлық жаңалықтар →</p>
         </div>
       </div>
-      {!data && <p className="description description-color">Жаңалықтар жоқ</p>}
+      {!data?.length && !data && (
+        <p className="description description-color">Жаңалықтар жоқ</p>
+      )}
       <Cards>
         {filteredNewsData?.map((news, index) => (
           <NewsCard key={index} data={news} />

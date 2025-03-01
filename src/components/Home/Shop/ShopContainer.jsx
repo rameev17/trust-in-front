@@ -14,7 +14,9 @@ const ShopContainer = () => {
       <div className="header">
         <h1 className="title primary-color">Мерч</h1>
       </div>
-      {!data && <p className="description description-color">Мерч жоқ</p>}
+      {!data?.length && !data && (
+        <p className="description description-color">Мерч жоқ</p>
+      )}
       <Cards>
         {filteredShopData?.map((item, index) => (
           <ShopCard
