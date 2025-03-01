@@ -20,7 +20,7 @@ const ProjectsContainer = (news) => {
           <p className="nav-link-text primary-color">Барлық жобалар →</p>
         </div>
       </div>
-      {!data?.length && !data && (
+      {(!data?.length || !data) && (
         <p className="description description-color">Жобалар жоқ</p>
       )}
 

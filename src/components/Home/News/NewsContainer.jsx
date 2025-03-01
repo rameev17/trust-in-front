@@ -19,7 +19,7 @@ const NewsContainer = () => {
           <p className="nav-link-text primary-color">Барлық жаңалықтар →</p>
         </div>
       </div>
-      {!data?.length && !data && (
+      {(!data?.length || !data) && (
         <p className="description description-color">Жаңалықтар жоқ</p>
       )}
       <Cards>

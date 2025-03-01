@@ -50,6 +50,11 @@ const Vacancies = () => {
         </div>
 
         <VacancyGrid>
+          {data?.vacancies?.length === 0 && (
+            <p className="description description-color">
+              Қазіргі уақытта ашық вакансиялар жоқ.
+            </p>
+          )}
           {data?.vacancies.map((vacancy) => (
             <Card
               key={vacancy.id}
@@ -168,8 +173,6 @@ const Vacancies = () => {
     </div>
   );
 };
-
-
 
 const VacancyGrid = styled.div`
   display: grid;

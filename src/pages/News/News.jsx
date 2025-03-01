@@ -40,6 +40,12 @@ const News = () => {
       </Header>
 
       <VacancyGrid>
+        {data?.news?.length === 0 && (
+          <p className="description description-color">
+            Қазіргі уақытта жаңалықтар жоқ.
+          </p>
+        )}
+
         {data?.news.map((item) => (
           <Card
             key={item.id}

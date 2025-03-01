@@ -12,7 +12,7 @@ const SponsorsContainer = () => {
         <h1 className="title primary-color">Демеушілер</h1>
       </div>
 
-      {!sponsors?.length && !sponsors && (
+      {(!sponsors?.length || !sponsors) && (
         <p className="description description-color">Демеушілер жоқ</p>
       )}
       <Container>

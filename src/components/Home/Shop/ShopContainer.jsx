@@ -9,12 +9,13 @@ const ShopContainer = () => {
   const [selectedItem, setSelectedItem] = useState();
   const { data } = useGetShop();
   const filteredShopData = data?.slice(0, 4);
+  console.log(data);
   return (
     <div className="main-page-wrapper">
       <div className="header">
         <h1 className="title primary-color">Мерч</h1>
       </div>
-      {!data?.length && !data && (
+      {(!data?.length || !data) && (
         <p className="description description-color">Мерч жоқ</p>
       )}
       <Cards>
