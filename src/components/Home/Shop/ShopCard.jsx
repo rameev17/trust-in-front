@@ -32,14 +32,13 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 320px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   border: 1px #ddd solid;
 `;
 
 const CardImage = styled.img`
-  width: 320px;
+  width: auto;
   height: 480px;
   object-fit: cover;
 `;

@@ -3,11 +3,12 @@ import Counter from "./Counter";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useGetStatistics } from "../../api/statistics";
 
 const MainInformation = ({ hanleOpenImageModal }) => {
   const [showCounters, setShowCounters] = useState(false);
   const { t } = useTranslation();
-
+  const { data } = useGetStatistics();
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,17 +37,17 @@ const MainInformation = ({ hanleOpenImageModal }) => {
           </TextContainer>
           <Counters isVisible={showCounters}>
             <Counter
-              target={1507}
+              target={data?.students_count ?? 0}
               label={t("counter_1")}
               onClick={handleCounterClick}
             />
             <Counter
-              target={140}
+              target={data?.donated_money ?? 0}
               label={t("counter_2")}
               onClick={handleNavigate}
               isMillion={true}
             />
-            <Counter target={800} label={t("counter_3")} />
+            <Counter target={data?.donors_count ?? 0} label={t("counter_3")} />
           </Counters>
         </Content>
       </ImageContainer>
