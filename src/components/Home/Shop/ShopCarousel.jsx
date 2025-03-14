@@ -69,7 +69,7 @@ const ShopCarousel = ({ data, setSelectedItem, setIsOpen }) => {
     <StyledCarousel
       showArrows={true}
       autoPlay={true}
-      infiniteLoop={true}
+      infiniteLoop={false}
       showThumbs={false}
       showStatus={false}
       interval={3000}
