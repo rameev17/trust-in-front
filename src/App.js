@@ -51,7 +51,7 @@ function App() {
       subPages: [
         {
           path: "",
-          name: t("header_vacansy"),
+          name: t("header_vacancy"),
         },
         {
           path: "reports",
