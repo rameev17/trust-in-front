@@ -8,7 +8,6 @@ const ShopCarousel = ({ data, setSelectedItem, setIsOpen }) => {
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(33.33);
   const [centerMode, setCenterMode] = useState(true);
 
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1300) {
@@ -70,7 +69,7 @@ const ShopCarousel = ({ data, setSelectedItem, setIsOpen }) => {
     <StyledCarousel
       showArrows={true}
       autoPlay={true}
-      infiniteLoop={true}
+      infiniteLoop={false}
       showThumbs={false}
       showStatus={false}
       interval={3000}
