@@ -15,7 +15,7 @@ const CardContainer = ({ hanleOpenSubscriptionModal, cards }) => {
           <ImageWrapper>
             <Image src={card.image} alt={card.title} />
             {card.hover_image && (
-              <HoverImage src={card.image} alt={card.title} />
+              <HoverImage src={card.hover_image} alt={card.title} />
             )}
           </ImageWrapper>
           <Title>{card.title}</Title>
