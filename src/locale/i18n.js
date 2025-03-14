@@ -6,7 +6,12 @@ i18n.use(initReactI18next).init({
     kz: {
       translation: {
         header_about_us: "Біз туралы",
+        header_mission: "Біздің миссия",
+        header_kenes: "Қамқоршылық кеңес",
+        header_documents: "Заңды құжаттар",
         header_alumni: "Түлектер",
+        header_reports: "Есептер",
+        header_vacancy: "Вакансия",
         header_news: "Жаңалықтар",
         header_projects: "Жобалар",
         main_title_1: "Есік БИЛ түлектерінің",
@@ -63,7 +68,12 @@ i18n.use(initReactI18next).init({
     ru: {
       translation: {
         header_about_us: "О нас",
+        header_mission: "Наша миссия",
+        header_kenes: "Попечительский совет",
+        header_documents: "Законодательные документы",
         header_alumni: "Выпускники",
+        header_reports: "Отчеты",
+        header_vacancy: "Вакансия",
         header_news: "Новости",
         header_projects: "Проекты",
         main_title_1: "Общественное объединение",

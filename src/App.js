@@ -17,27 +17,29 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProjectsRouter from "./pages/Projects/router";
 import NewsRouter from "./pages/News/router";
+import { use } from "react";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const [isNavbarFixed, setIsNavbarFixed] = useState(false);
-
+  const { t } = useTranslation();
   const routes = [
     {
       path: "/home/*",
-      name: `Біз туралы`,
+      name: t("header_about_us"),
       requiredAccessToPage: "home",
       subPages: [
         {
           path: "about",
-          name: `Біздің миссия`,
+          name: t("header_mission"),
         },
         {
           path: "managment",
-          name: `Қамқоршылық кеңес`,
+          name: t("header_kenes"),
         },
         {
           path: "documents",
-          name: `Заңды құжаттар`,
+          name: t("header_documents"),
         },
       ],
       element: <HomeRouter />,
@@ -45,15 +47,15 @@ function App() {
     {
       path: "/alumni/*",
       requiredAccessToPage: "alumni",
-      name: `Түлектер`,
+      name: t("header_alumni"),
       subPages: [
         {
           path: "",
-          name: `Вакансия`,
+          name: t("header_vacansy"),
         },
         {
           path: "reports",
-          name: `Есептер`,
+          name: t("header_reports"),
         },
       ],
       element: <VacansyRouter />,
@@ -61,14 +63,14 @@ function App() {
     {
       path: "/news/*",
       requiredAccessToPage: "news",
-      name: `Жаңалықтар`,
+      name: t("header_news"),
       element: <NewsRouter />,
     },
 
     {
       path: "/projects/*",
       requiredAccessToPage: "projects",
-      name: `Жобалар`,
+      name: t("header_projects"),
       element: <ProjectsRouter />,
     },
   ];
