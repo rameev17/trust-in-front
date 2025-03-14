@@ -3,18 +3,24 @@ import styled from "styled-components";
 import ShopCard from "./ShopCard";
 import { useGetShop } from "../../../api/shop";
 import OrderModal from "./OrderModal";
+import { useTranslation } from "react-i18next";
 
 const ShopContainer = () => {
   const [isOpen, setIsOpen] = useState();
   const [selectedItem, setSelectedItem] = useState();
+
+  const { t } = useTranslation();
+
   const { data } = useGetShop();
   const filteredShopData = data?.slice(0, 4);
   return (
     <div className="main-page-wrapper">
       <div className="header">
-        <h1 className="title primary-color">Мерч</h1>
+        <h1 className="title primary-color">{t("shop_title")}</h1>
       </div>
-      {!data && <p className="description description-color">Мерч жоқ</p>}
+      {!data && (
+        <p className="description description-color">{t("shop_empty")}</p>
+      )}
       <Cards>
         {filteredShopData?.map((item, index) => (
           <ShopCard

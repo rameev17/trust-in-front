@@ -5,12 +5,10 @@ const ImageModal = ({ isOpen, setIsOpen }) => {
   return (
     <ModalCenter isOpen={isOpen} setIsOpen={setIsOpen}>
       <img
-        src={require("../../images/map.png")}
+        src={require("../../images/tylekterSany.png")}
         style={{
-          width: "90vw",
+          width: "100%",
           height: "auto",
-          maxWidth: "90%",
-          maxHeight: "90%",
         }}
       />
     </ModalCenter>

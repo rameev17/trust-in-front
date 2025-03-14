@@ -6,8 +6,11 @@ import {
   getDaysLeft,
 } from "../../../helper/getDaysLeft";
 import { TEXT_COLORS } from "../../../helper/constants";
+import { useTranslation } from "react-i18next";
 
 const ProjectsCard = ({ data }) => {
+  const { t, locale } = useTranslation();
+
   const donatedPercentage = useMemo(() => {
     if (data?.goal_money === 0) return 0;
     return (data?.donated_money / data?.goal_money) * 100;
@@ -24,7 +27,7 @@ const ProjectsCard = ({ data }) => {
       <CardImageWrapper>
         <CardImage src={data?.image} />
         <OpenProjectButton href={`/projects/${data.id}`}>
-          Ұлес қосу
+          {t("projects_button")}
         </OpenProjectButton>
       </CardImageWrapper>
       <CardTitle>{data?.title}</CardTitle>
@@ -37,10 +40,10 @@ const ProjectsCard = ({ data }) => {
           }}
         >
           <div>
-            <PriceTitle>Мақсат:</PriceTitle>
+            <PriceTitle>{t("projects_goal")}</PriceTitle>
             <PriceText>{formatNumberWithSpaces(data?.goal_money)} ₸</PriceText>
           </div>
-          <PriceTitle>{getDaysLeft(data?.ending_at)}</PriceTitle>
+          <PriceTitle>{getDaysLeft(data?.ending_at, locale)}</PriceTitle>
         </div>
         <Progress
           percent={parseFloat(donatedPercentage)}
@@ -53,7 +56,7 @@ const ProjectsCard = ({ data }) => {
             {formatNumberWithSpaces(data?.donated_money)} ₸
           </ProgressText>
           <ProgressTextWithBorder>
-            {parseFloat(donatedPercentage)}% ЖИНАЛДЫ
+            {parseFloat(donatedPercentage)}% {t("projects_money")}
           </ProgressTextWithBorder>
         </ProgressContainer>
       </PriceContainer>

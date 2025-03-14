@@ -2,25 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import ProjectsCard from "./ProjectsCard";
 import { useGetProjects } from "../../../api/project";
+import { useTranslation } from "react-i18next";
 
 const ProjectsContainer = (news) => {
   const { data } = useGetProjects();
+  const { t } = useTranslation();
   const filteredData = data?.slice(0, 4);
 
   return (
     <div className="main-page-wrapper">
       <div className="header">
-        <h1 className="title primary-color">Жобалар</h1>
+        <h1 className="title primary-color">{t("projects_title")}</h1>
         <div
           onClick={() => {
             window.open("/projects", "_self");
           }}
           className="all-button"
         >
-          <p className="nav-link-text primary-color">Барлық жобалар →</p>
+          <p className="nav-link-text primary-color">{t("projects_all")}</p>
         </div>
       </div>
-      {!data && <p className="description description-color">Жобалар жоқ</p>}
+      {!data && (
+        <p className="description description-color">{t("projects_empty")}</p>
+      )}
 
       <Cards>
         {filteredData?.map((project, index) => (

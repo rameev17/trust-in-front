@@ -1,6 +1,6 @@
-export function getDaysLeft(targetDate) {
-  const today = new Date(); 
-  const target = new Date(targetDate); 
+export function getDaysLeft(targetDate, locale) {
+  const today = new Date();
+  const target = new Date(targetDate);
 
   const difference = target - today;
 
@@ -8,12 +8,20 @@ export function getDaysLeft(targetDate) {
 
   // Return the result
   if (daysLeft <= 0) {
-    return "Аяқталды";
+    if (locale === "ru") {
+      return "Завершено";
+    } else {
+      return "Аяқталды";
+    }
   } else {
-    return `${daysLeft} күн қалды`;
+    if (locale === "ru") {
+      return `${daysLeft} дней осталось`;
+    } else {
+      return `${daysLeft} күн қалды`;
+    }
   }
 }
 
 export function formatNumberWithSpaces(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  }
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

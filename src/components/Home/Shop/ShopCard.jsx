@@ -2,9 +2,11 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { formatNumberWithSpaces } from "../../../helper/getDaysLeft";
 import { TEXT_COLORS } from "../../../helper/constants";
+import { useTranslation } from "react-i18next";
 
 const ShopCard = ({ item, setSelectedItem, setIsOpen }) => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
+  const { t } = useTranslation();
 
   const handleOpen = useCallback(() => {
     setSelectedItem(item);
@@ -17,10 +19,10 @@ const ShopCard = ({ item, setSelectedItem, setIsOpen }) => {
       <InfoContainer>
         <CardTitle>{item.title}</CardTitle>
         <PriceContainer>
-          <PriceTitle>Цена:</PriceTitle>
+          <PriceTitle>{t("shop_price")}</PriceTitle>
           <PriceText>{formatNumberWithSpaces(item.price)} ₸</PriceText>
         </PriceContainer>
-        <Button onClick={() => handleOpen()}>Тапсырыс беру</Button>
+        <Button onClick={() => handleOpen()}>{t("shop_order")}</Button>
       </InfoContainer>
     </CardContainer>
   );

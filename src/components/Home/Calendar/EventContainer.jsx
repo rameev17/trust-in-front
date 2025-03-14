@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import ImageCarousel from "./Carousel";
 import ImageCarouselWithModal from "./YearCalendarModal";
 import { useGetCalendar, useGetYearCalendar } from "../../../api/calendar";
+import { useTranslation } from "react-i18next";
 
 const EventContainer = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { t } = useTranslation();
   const { data: yearCalendar } = useGetYearCalendar();
   const { data } = useGetCalendar();
 
@@ -13,15 +15,15 @@ const EventContainer = () => {
   return (
     <div className="main-page-wrapper">
       <div className="header">
-        <h1 className="title primary-color">Іс-шаралар күнтізбесі</h1>
+        <h1 className="title primary-color">{t("calendar_title")}</h1>
         {yearCalendar && yearCalendar?.length && (
           <div onClick={() => setIsModalVisible(true)} className="all-button">
-            <p className="nav-link-text primary-color">Жылдық күнтізбесі →</p>
+            <p className="nav-link-text primary-color">{t("calendar_all")}</p>
           </div>
         )}
       </div>
       {noData ? (
-        <p className="description description-color">Іс-шаралар жоқ</p>
+        <p className="description description-color">{t("calendar_empty")}</p>
       ) : (
         <ImageCarousel data={data} />
       )}

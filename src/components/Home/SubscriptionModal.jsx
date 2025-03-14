@@ -3,15 +3,20 @@ import ModalCenter from "../Modal";
 import styled from "styled-components";
 import { Input } from "antd";
 import { TEXT_COLORS } from "../../helper/constants";
+import { useTranslation } from "react-i18next";
 
 const SubscriptionModal = ({ isOpen, setIsOpen, selectedPlan }) => {
+  const { t } = useTranslation();
+
   return (
-    <ModalCenter isOpen={isOpen} setIsOpen={setIsOpen}>
+    <ModalCenter isOpen={isOpen} setIsOpen={setIsOpen} width={"300px"}>
       <Wrapper>
-        <Title>{`Подписканың аты:`}</Title>
+        <Title>{t("subscription_name")}</Title>
         <PriceContainer>
           <PriceName>{selectedPlan?.title}</PriceName>
-          <PriceText>{selectedPlan?.price} ₸ / айына</PriceText>
+          <PriceText>
+            {selectedPlan?.price} {t("subscription_month")}
+          </PriceText>
         </PriceContainer>
         <Form>
           <Input placeholder="Имя" />
@@ -20,7 +25,7 @@ const SubscriptionModal = ({ isOpen, setIsOpen, selectedPlan }) => {
           <Input placeholder="Номер телефона" />
           <Input placeholder="email" />
         </Form>
-        `<Button>Жазылу</Button>
+        `<Button>{t("subscription_button")}</Button>
       </Wrapper>
     </ModalCenter>
   );

@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { useGetSponsors } from "../../api/sponsors";
+import { useTranslation } from "react-i18next";
 
 const SponsorsContainer = () => {
+  const { t } = useTranslation();
   const { data: sponsors } = useGetSponsors();
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
   return (
     <div className="main-page-wrapper">
       <div className="header">
-        <h1 className="title primary-color">Демеушілер</h1>
+        <h1 className="title primary-color">{t("sponsors_title")}</h1>
       </div>
 
       <Container>

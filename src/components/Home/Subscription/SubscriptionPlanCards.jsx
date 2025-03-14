@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { formatNumberWithSpaces } from "../../../helper/getDaysLeft";
-import { AppstoreAddOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { TEXT_COLORS } from "../../../helper/constants";
+import { useTranslation } from "react-i18next";
 
 const CardContainer = ({ hanleOpenSubscriptionModal, cards }) => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
+  const { t } = useTranslation();
+
   return (
     <Container>
       {cards.map((card, index) => (
@@ -22,10 +25,11 @@ const CardContainer = ({ hanleOpenSubscriptionModal, cards }) => {
           <Title>{card.title}</Title>
 
           <Description>
-            {formatNumberWithSpaces(parseFloat(card.price))} ₸ / айына
+            {formatNumberWithSpaces(parseFloat(card.price))}{" "}
+            {t("subscription_month")}
           </Description>
           <Button onClick={() => hanleOpenSubscriptionModal(card)}>
-            Жазылу
+            {t("subscription_button")}
           </Button>
           <div style={{ position: "absolute", top: "12px", right: "12px" }}>
             <Description>

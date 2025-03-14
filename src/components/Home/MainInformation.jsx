@@ -2,9 +2,12 @@ import styled from "styled-components";
 import Counter from "./Counter";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MainInformation = ({ hanleOpenImageModal }) => {
   const [showCounters, setShowCounters] = useState(false);
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,24 +29,24 @@ const MainInformation = ({ hanleOpenImageModal }) => {
         <Content>
           <TextContainer>
             <Title>
-              Есік ҚТЛ (қазіргі БИЛ) түлектерінің{" "}
+              {t("main_title_1")}
               <Title style={{ color: "#FBBC58" }}>“AĠALQA”</Title>
             </Title>
-            <Title>атты қоғамдық бірлестігі</Title>
+            <Title>{t("main_title_2")}</Title>
           </TextContainer>
           <Counters isVisible={showCounters}>
             <Counter
               target={1507}
-              label="лицей түлектерінің саны"
+              label={t("counter_1")}
               onClick={handleCounterClick}
             />
             <Counter
               target={140}
-              label="түлектермен жиналған қаржылай көмек"
+              label={t("counter_2")}
               onClick={handleNavigate}
               isMillion={true}
             />
-            <Counter target={800} label="қолдау білдірген түлек саны" />
+            <Counter target={800} label={t("counter_3")} />
           </Counters>
         </Content>
       </ImageContainer>

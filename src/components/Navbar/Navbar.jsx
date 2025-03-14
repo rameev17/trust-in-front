@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { MenuOutlined } from "@ant-design/icons";
 import DropdownIcon from "../../icons/DropdownIcon";
 import { TEXT_COLORS } from "../../helper/constants";
+import { useTranslation } from "react-i18next";
+import useLocale from "../../locale/useLocale";
 
 const Navbar = ({ routes }) => {
   const location = useLocation();
@@ -12,6 +14,8 @@ const Navbar = ({ routes }) => {
   const [activeTab, setActiveTab] = useState(`/${mainUrl}`);
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  const { locale, setLocale } = useLocale();
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -22,6 +26,12 @@ const Navbar = ({ routes }) => {
   useEffect(() => {
     setActiveTab(`/${mainUrl}`);
   }, [mainUrl]);
+
+  const toggleLocale = () => {
+    const newLocale = locale === "kz" ? "ru" : "kz";
+    setLocale(newLocale);
+    i18n.changeLanguage(newLocale);
+  };
 
   return (
     <Container onMouseLeave={() => setDropdownOpen(null)}>
@@ -43,7 +53,7 @@ const Navbar = ({ routes }) => {
                 onClick={() => setMobileMenuOpen(false)}
                 onMouseEnter={() => setDropdownOpen(i)}
               >
-                {page.name}
+                {t(page.name)}
               </NavItem>
               {page?.subPages?.length > 0 && (
                 <DropdownToggle
@@ -68,7 +78,7 @@ const Navbar = ({ routes }) => {
                       to={`${page.requiredAccessToPage}/${subPage.path}`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      {subPage.name}
+                      {t(subPage.name)}
                     </DropdownItem>
                   ))}
                 </DropdownMenu>
@@ -76,6 +86,26 @@ const Navbar = ({ routes }) => {
             </NavItemContainer>
           ))}
         </NavItems>
+        <LocaleSwitcher>
+          <LocaleButton
+            active={locale === "kz"}
+            onClick={() => {
+              setLocale("kz");
+              i18n.changeLanguage("kz");
+            }}
+          >
+            KZ
+          </LocaleButton>
+          <LocaleButton
+            active={locale === "ru"}
+            onClick={() => {
+              setLocale("ru");
+              i18n.changeLanguage("ru");
+            }}
+          >
+            RU
+          </LocaleButton>
+        </LocaleSwitcher>
       </RightSide>
     </Container>
   );
@@ -190,6 +220,27 @@ const DropdownItem = styled(NavLink)`
 
   &:hover {
     opacity: 0.6;
+  }
+`;
+const LocaleSwitcher = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+const LocaleButton = styled.button`
+  background: ${(props) =>
+    props.active ? TEXT_COLORS.PRIMARY_COLOR : "transparent"};
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: ${(props) => (props.active ? "#fff" : TEXT_COLORS.PRIMARY_COLOR)};
+  transition: background 0.3s;
+
+  &:hover {
+    background: ${TEXT_COLORS.PRIMARY_COLOR};
+    color: #fff;
   }
 `;
 

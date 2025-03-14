@@ -3,29 +3,32 @@ import styled from "styled-components";
 import CardContainer from "./SubscriptionPlanCards";
 import { useGetSubscription } from "../../../api/subscription";
 import { TEXT_COLORS } from "../../../helper/constants";
+import { useTranslation } from "react-i18next";
 
 const SubscriptionPlan = ({ hanleOpenSubscriptionModal }) => {
+  const { t } = useTranslation();
   const { data } = useGetSubscription();
   return (
     <div className="main-page-wrapper">
       <div className="header">
-        <h1 className="title primary-color">Тарифтік жоспар</h1>
+        <h1 className="title primary-color">{t("subscription_header")}</h1>
       </div>
 
-      <Description>
-        Қорымыздың жобаларын қолдау үшін ай сайынғы жазылымға қосылыңыз
-      </Description>
+      <Description>{t("subscription_description")}</Description>
       {data && data?.length ? (
         <CardContainer
           hanleOpenSubscriptionModal={hanleOpenSubscriptionModal}
           cards={data}
         />
       ) : (
-        <p className="description description-color">Тарифтік жоспар жоқ</p>
+        <p className="description description-color">
+          {t("subscription_empty")}
+        </p>
       )}
 
       <Link>
-        Осы <a>сілтеме</a> арқылы жазылымнан бас тарта аласыз
+        {t("subscription_link_1")} <a>{t("subscription_link_2")}</a>{" "}
+        {t("subscription_link_3")}
       </Link>
     </div>
   );

@@ -8,8 +8,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { useGetProjects } from "../api/project";
 import { useGetFilteredNews } from "../api/news";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const { data: projects } = useGetProjects();
   const { data: news } = useGetFilteredNews();
 
@@ -17,7 +19,7 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <Column>
-          <Logo src={require("../images/logo.png")} alt="Company Logo" />
+          <Logo src={require("../images/footer-logo.png")} alt="Company Logo" />
           <SocialIcons>
             {[
               {
@@ -56,31 +58,27 @@ const Footer = () => {
 
         {[
           {
-            title: "Навигация",
+            title: t("footer_nav"),
             links: [
-              { text: "Басты бет", href: "/home" },
-              { text: "Біз тұралы", href: "/home/about" },
-              { text: "Мерч", href: "#services" },
-              { text: "Тулектер", href: "/alumni" },
+              { text: t("footer_nav_home"), href: "/home" },
+              { text: t("footer_nav_about"), href: "/home/about" },
+              { text: t("footer_nav_merch"), href: "#services" },
+              { text: t("footer_nav_alumni"), href: "/alumni" },
             ],
           },
           {
-            title: "Документтер",
+            title: t("footer_doc"),
             links: [
               {
-                text: "Қоғамдық оферта",
+                text: t("footer_doc_offer"),
                 href: require("../documents/kogam.pdf"),
               },
               {
-                text: "Қоғамдық бірлестіктің жарғысы",
-                href: require("../documents/zhargy.pdf"),
-              },
-              {
-                text: "Құпиялық саясаты",
+                text: t("footer_doc_privacy"),
                 href: require("../documents/kupiya.pdf"),
               },
               {
-                text: "Онлайн төлемдер қауіпсіздігі",
+                text: t("footer_doc_payment"),
                 href: require("../documents/online.pdf"),
               },
             ],
@@ -99,8 +97,8 @@ const Footer = () => {
         ))}
 
         {[
-          { title: "Жаңалықтар", data: news?.news },
-          { title: "Жобалар", data: projects },
+          { title: t("news_title"), data: news?.news },
+          { title: t("projects_title"), data: projects },
         ].map(({ title, data }) => (
           <Column key={title}>
             <h3>{title}</h3>
@@ -114,9 +112,7 @@ const Footer = () => {
           </Column>
         ))}
       </FooterContent>
-      <FooterText>
-        © 2024 Есік ҚТЛ/БИЛ түлектерінің “Agalqa” атты қоғамдық бірлестігі
-      </FooterText>
+      <FooterText>{t("footer_text")}</FooterText>
     </FooterContainer>
   );
 };

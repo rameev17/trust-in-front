@@ -6,11 +6,11 @@ import { TEXT_COLORS } from "../../helper/constants";
 const DonationModal = ({ isOpen, setIsOpen }) => {
   return (
     <ModalCenter isOpen={isOpen} setIsOpen={setIsOpen} width={"300px"}>
-      <img src={require("../../images/donateQr.PNG")} />
+      <img src={require("../../images/qr.jpg")} />
       <Link>
         Осы{" "}
         <a
-          href="https://kaspi.kz/pay/OOTrustinCommunity"
+          href="https://kaspi.kz/pay/_gate?action=service_with_subservice&service_id=4129&subservice_id=9966&region_id=18"
           target="_blank"
           rel="noreferrer"
         >

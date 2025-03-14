@@ -3,10 +3,11 @@ import { Form, Input, Modal } from "antd";
 import styled from "styled-components";
 import { useCreateOrder } from "../../../api/shop";
 import { TEXT_COLORS } from "../../../helper/constants";
+import { useTranslation } from "react-i18next";
 
 const OrderModal = ({ isOpen, setIsOpen, selectedItem }) => {
   const [form] = Form.useForm();
-
+  const { t } = useTranslation();
   const { mutate } = useCreateOrder();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const OrderModal = ({ isOpen, setIsOpen, selectedItem }) => {
 
   return (
     <Modal
-      title="Тапсырыс беру"
+      title={t("shop_order")}
       open={isOpen}
       onCancel={handleCancel}
       footer={null}
@@ -48,37 +49,39 @@ const OrderModal = ({ isOpen, setIsOpen, selectedItem }) => {
           }}
         >
           <Form.Item
-            label="Аты"
+            label={t("shop_order_name")}
             name="name"
-            rules={[{ required: true, message: "Атыңызды енгізіңіз" }]}
+            rules={[
+              { required: true, message: t("shop_order_name_placeholder") },
+            ]}
           >
-            <Input placeholder="Атыңызды енгізіңіз" />
+            <Input placeholder={t("shop_order_name_placeholder")} />
           </Form.Item>
 
           <Form.Item
-            label="Нөмірі"
+            label={t("shop_order_phone")}
             name="phoneNumber"
             rules={[
-              { required: true, message: "Нөміріңізді енгізіңіз" },
+              { required: true, message: t("shop_order_phone_placeholder") },
               {
                 pattern: /^[0-9]+$/,
-                message: "Номер должен состоять из цифр",
+                message: t("shop_order_phone_error"),
               },
             ]}
           >
-            <Input placeholder="Нөмір сандардан тұруы керек" />
+            <Input placeholder={t("shop_order_phone_placeholder")} />
           </Form.Item>
 
-          <Form.Item label="Тапсырыс атауы" name="itemName">
+          <Form.Item label={t("shop_order_item_name")} name="itemName">
             <Input readOnly />
           </Form.Item>
 
           <ButtonWrapper>
             <Button type="primary" htmlType="submit">
-              Тапсырыс беру
+              {t("shop_order")}
             </Button>
             <CancelButton type="default" onClick={handleCancel}>
-              Бас тарту
+              {t("shop_order_back")}
             </CancelButton>
           </ButtonWrapper>
         </Form>

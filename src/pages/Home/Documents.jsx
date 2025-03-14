@@ -22,15 +22,6 @@ const DocumentPage = () => {
           </StyledLink>
         </DocumentCard>
         <DocumentCard>
-          <DocumentTitle>Қоғамдық бірлестіктің жарғысы</DocumentTitle>
-          <StyledLink
-            href={require("../../documents/zhargy.pdf")}
-            target="_blank"
-          >
-            <Button>Открыть</Button>
-          </StyledLink>
-        </DocumentCard>
-        <DocumentCard>
           <DocumentTitle>Құпиялық саясаты</DocumentTitle>
           <StyledLink
             href={require("../../documents/kupiya.pdf")}
