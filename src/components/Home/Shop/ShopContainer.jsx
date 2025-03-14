@@ -16,9 +16,10 @@ const ShopContainer = () => {
       <div className="header">
         <h1 className="title primary-color">{t("shop_title")}</h1>
       </div>
-      {!data && (
+      {(!data?.length || !data) && (
         <p className="description description-color">{t("shop_empty")}</p>
       )}
+
       <ShopCarousel
         data={data}
         setSelectedItem={setSelectedItem}
@@ -33,7 +34,5 @@ const ShopContainer = () => {
     </div>
   );
 };
-
-
 
 export default ShopContainer;

@@ -22,7 +22,7 @@ const ProjectsContainer = (news) => {
           <p className="nav-link-text primary-color">{t("projects_all")}</p>
         </div>
       </div>
-      {!data && (
+      {(!data?.length || !data) && (
         <p className="description description-color">{t("projects_empty")}</p>
       )}
 

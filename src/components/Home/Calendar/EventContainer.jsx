@@ -22,8 +22,9 @@ const EventContainer = () => {
           </div>
         )}
       </div>
-      {noData ? (
-        <p className="description description-color">{t("calendar_empty")}</p>
+
+      {!data?.length || !data ? (
+        <p className="description description-color">{t("projects_empty")}</p>
       ) : (
         <ImageCarousel data={data} />
       )}

@@ -21,9 +21,10 @@ const NewsContainer = () => {
           <p className="nav-link-text primary-color">{t("news_all")}</p>
         </div>
       </div>
-      {!data && (
+      {(!data?.length || !data) && (
         <p className="description description-color">{t("news_empty")}</p>
       )}
+
       <Cards>
         {filteredNewsData?.map((news, index) => (
           <NewsCard key={index} data={news} />
