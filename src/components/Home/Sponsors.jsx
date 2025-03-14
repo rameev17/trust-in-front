@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 const SponsorsContainer = () => {
   const { t } = useTranslation();
   const { data: sponsors } = useGetSponsors();
-  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   return (
     <div className="main-page-wrapper">
@@ -16,10 +15,7 @@ const SponsorsContainer = () => {
 
       <Container>
         {sponsors?.map((sponsor) => (
-          <SponsorImage
-            key={sponsor.id}
-            src={`${baseUrl}/media/${sponsor.image}`}
-          />
+          <SponsorImage key={sponsor.id} src={sponsor.image} />
         ))}
       </Container>
     </div>

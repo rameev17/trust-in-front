@@ -6,7 +6,6 @@ import { TEXT_COLORS } from "../../../helper/constants";
 import { useTranslation } from "react-i18next";
 
 const CardContainer = ({ hanleOpenSubscriptionModal, cards }) => {
-  const baseUrl = process.env.REACT_APP_BASE_URL;
   const { t } = useTranslation();
 
   return (
@@ -14,12 +13,9 @@ const CardContainer = ({ hanleOpenSubscriptionModal, cards }) => {
       {cards.map((card, index) => (
         <Card key={card.id} index={index}>
           <ImageWrapper>
-            <Image src={`${baseUrl}/media/${card.image}`} alt={card.title} />
+            <Image src={card.image} alt={card.title} />
             {card.hover_image && (
-              <HoverImage
-                src={`${baseUrl}/media/${card.hover_image}`}
-                alt={card.title}
-              />
+              <HoverImage src={card.image} alt={card.title} />
             )}
           </ImageWrapper>
           <Title>{card.title}</Title>

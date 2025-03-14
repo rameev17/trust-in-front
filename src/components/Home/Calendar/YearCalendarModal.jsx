@@ -9,8 +9,6 @@ const ImageCarouselWithModal = ({
   setIsModalVisible,
   data,
 }) => {
-  const baseUrl = process.env.REACT_APP_BASE_URL;
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -75,10 +73,7 @@ const ImageCarouselWithModal = ({
       >
         {data?.map((item, index) => (
           <div key={index}>
-            <img
-              src={`${baseUrl}/media/${item.image}`}
-              alt={`Calendar ${index}`}
-            />
+            <img src={item.image} alt={`Calendar ${index}`} />
           </div>
         ))}
       </StyledCarousel>

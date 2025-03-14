@@ -7,8 +7,6 @@ const ImageCarousel = ({ data }) => {
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(33.33);
   const [centerMode, setCenterMode] = useState(true);
 
-  const baseUrl = process.env.REACT_APP_BASE_URL;
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1300) {
@@ -81,7 +79,7 @@ const ImageCarousel = ({ data }) => {
     >
       {data?.map((item, index) => (
         <div key={index}>
-          <img src={`${baseUrl}/media/${item.image}`} />
+          <img src={item.image} />
         </div>
       ))}
     </StyledCarousel>

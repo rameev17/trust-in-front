@@ -8,7 +8,6 @@ const ShopCarousel = ({ data, setSelectedItem, setIsOpen }) => {
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(33.33);
   const [centerMode, setCenterMode] = useState(true);
 
-  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     const handleResize = () => {

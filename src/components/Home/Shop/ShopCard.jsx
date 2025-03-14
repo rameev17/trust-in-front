@@ -5,7 +5,6 @@ import { TEXT_COLORS } from "../../../helper/constants";
 import { useTranslation } from "react-i18next";
 
 const ShopCard = ({ item, setSelectedItem, setIsOpen }) => {
-  const baseUrl = process.env.REACT_APP_BASE_URL;
   const { t } = useTranslation();
 
   const handleOpen = useCallback(() => {
@@ -15,7 +14,7 @@ const ShopCard = ({ item, setSelectedItem, setIsOpen }) => {
 
   return (
     <CardContainer>
-      <CardImage src={`${baseUrl}/media/${item.image}`} />
+      <CardImage src={item.image} />
       <InfoContainer>
         <CardTitle>{item.title}</CardTitle>
         <PriceContainer>
