@@ -9,7 +9,7 @@ import { TEXT_COLORS } from "../../../helper/constants";
 import { useTranslation } from "react-i18next";
 import useLocale from "../../../locale/useLocale";
 
-const ProjectsCard = ({ data }) => {
+const ProjectsCard = ({ data, setIsOpen }) => {
   const { t } = useTranslation();
   const { locale } = useLocale();
   const donatedPercentage = useMemo(() => {
@@ -27,7 +27,15 @@ const ProjectsCard = ({ data }) => {
     <CardContainer>
       <CardImageWrapper>
         <CardImage src={data?.image} />
-        <OpenProjectButton href={`/projects/${data.id}`}>
+        <OpenProjectButton
+          onClick={() => {
+            if (setIsOpen) {
+              setIsOpen(true);
+            } else {
+              window.location.href = `/projects/${data.id}`;
+            }
+          }}
+        >
           {t("projects_button")}
         </OpenProjectButton>
       </CardImageWrapper>

@@ -97,15 +97,15 @@ const Footer = () => {
         ))}
 
         {[
-          { title: t("news_title"), data: news?.news },
-          { title: t("projects_title"), data: projects },
-        ].map(({ title, data }) => (
+          { title: t("news_title"), data: news?.news, type: "news" },
+          { title: t("projects_title"), data: projects, type: "projects" },
+        ].map(({ title, data, type }) => (
           <Column key={title}>
             <h3>{title}</h3>
             <ul>
               {data?.slice(0, 3).map(({ id, title }) => (
                 <li key={id}>
-                  <a href={`/projects/${id}`}>{title}</a>
+                  <a href={`/${type}/${id}`}>{title}</a>
                 </li>
               ))}
             </ul>

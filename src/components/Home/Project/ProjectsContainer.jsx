@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ProjectsCard from "./ProjectsCard";
 import { useGetProjects } from "../../../api/project";
 import { useTranslation } from "react-i18next";
+import DonationModal from "../DonationModal";
 
 const ProjectsContainer = (news) => {
+  const [isOpen, setIsOpen] = useState();
   const { data } = useGetProjects();
   const { t } = useTranslation();
   const filteredData = data?.slice(0, 4);
@@ -28,9 +30,10 @@ const ProjectsContainer = (news) => {
 
       <Cards>
         {filteredData?.map((project, index) => (
-          <ProjectsCard data={project} />
+          <ProjectsCard data={project} isOpen={isOpen} setIsOpen={setIsOpen} />
         ))}
       </Cards>
+      <DonationModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
