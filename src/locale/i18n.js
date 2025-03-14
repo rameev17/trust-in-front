@@ -32,7 +32,7 @@ i18n.use(initReactI18next).init({
         projects_title: "Жобалар",
         projects_all: "Барлық жобалар →",
         projects_empty: "Жобалар жоқ",
-        projects_button: "Ұлес қосу",
+        projects_button: "Үлес қосу",
         projects_goal: "Мақсат:",
         projects_money: "ЖИНАЛДЫ",
         shop_title: "Мерч",
