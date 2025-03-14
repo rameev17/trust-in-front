@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Spin, Button, message, Typography, Row, Col, Card } from "antd";
+import { Spin, Button, Typography, Row, Col, Card } from "antd";
 import { useGetNewsById } from "../../api/news";
 import { RWebShare } from "react-web-share";
 
@@ -8,6 +8,9 @@ const { Title, Paragraph } = Typography;
 
 const NewsPage = () => {
   const [loading, setLoading] = useState(true);
+  const [titleFontSize, setTitleFontSize] = useState("28px");
+  const [descriptionFontSize, setDescriptionFontSize] = useState("16px");
+
   const [news, setNews] = useState(null);
   const { id } = useParams();
 
@@ -15,19 +18,23 @@ const NewsPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setTitleFontSize(window.innerWidth < 768 ? "18px" : "28px");
+      setDescriptionFontSize(window.innerWidth < 768 ? "14px" : "16px");
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   useEffect(() => {
     if (data) {
       setNews(data);
       setLoading(false);
     }
   }, [data]);
-
-  const shareNews = () => {
-    navigator.clipboard
-      .writeText(window.location.href)
-      .then(() => message.success("Сілтеме көшірілді"))
-      .catch(() => message.error("Сілтемені көшіру мүмкін болмады"));
-  };
 
   if (isLoading) {
     return (
@@ -78,12 +85,16 @@ const NewsPage = () => {
               padding: "20px",
             }}
           >
-            <Title level={1} style={{ fontWeight: "bold", color: "#333" }}>
+            <Title
+              level={1}
+              style={{
+                fontWeight: "bold",
+                color: "#333",
+                fontSize: titleFontSize,
+              }}
+            >
               {news?.[0]?.title}
             </Title>
-            <Paragraph style={{ fontSize: "16px", color: "#555" }}>
-              {news?.[0]?.description}
-            </Paragraph>
             {news?.[0]?.image && (
               <img
                 src={news?.[0]?.image}
@@ -97,6 +108,10 @@ const NewsPage = () => {
                 }}
               />
             )}
+            <Paragraph style={{ fontSize: descriptionFontSize, color: "#555" }}>
+              {news?.[0]?.description}
+            </Paragraph>
+
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <p style={{ fontSize: "14px", color: "#777" }}>
                 Жарияланған күні:{" "}
