@@ -10,14 +10,14 @@ import ImageModal from "../../components/Home/ImageModal.jsx";
 import DonationModal from "../../components/Home/DonationModal.jsx";
 import SubscriptionModal from "../../components/Home/SubscriptionModal.jsx";
 import SponsorsContainer from "../../components/Home/Sponsors.jsx";
-import { useTranslation } from "react-i18next";
+import useLocale from "../../locale/useLocale.js";
 
 const Main = () => {
   const [isOpenImageModal, setIsOpenImageModal] = useState(false);
   const [isOpenDonationModal, setIsOpenDonationModal] = useState(false);
   const [isOpenSubscriptionModal, setIsOpenSubscriptionModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState();
-  const { locale } = useTranslation();
+  const { locale } = useLocale();
   const hanleOpenImageModal = () => {
     setIsOpenImageModal(true);
   };
@@ -28,7 +28,6 @@ const Main = () => {
     setSelectedPlan(id);
     setIsOpenSubscriptionModal(true);
   };
-
   return (
     <Container>
       <MainInformation hanleOpenImageModal={hanleOpenImageModal} />

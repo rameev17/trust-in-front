@@ -7,10 +7,11 @@ import {
 } from "../../../helper/getDaysLeft";
 import { TEXT_COLORS } from "../../../helper/constants";
 import { useTranslation } from "react-i18next";
+import useLocale from "../../../locale/useLocale";
 
 const ProjectsCard = ({ data }) => {
-  const { t, locale } = useTranslation();
-
+  const { t } = useTranslation();
+  const { locale } = useLocale();
   const donatedPercentage = useMemo(() => {
     if (data?.goal_money === 0) return 0;
     return (data?.donated_money / data?.goal_money) * 100;
