@@ -11,12 +11,12 @@ const EventContainer = () => {
   const { data } = useGetCalendar();
 
   const noData = !data || data.length === 0;
-
+  
   return (
     <div className="main-page-wrapper">
       <div className="header">
         <h1 className="title primary-color">{t("calendar_title")}</h1>
-        {yearCalendar && yearCalendar?.length && (
+        {yearCalendar && Boolean(yearCalendar?.length) && (
           <div onClick={() => setIsModalVisible(true)} className="all-button">
             <p className="nav-link-text primary-color">{t("calendar_all")}</p>
           </div>

@@ -68,7 +68,7 @@ const ImageCarousel = ({ data }) => {
     <StyledCarousel
       showArrows={true}
       autoPlay={true}
-      infiniteLoop={true}
+      infiniteLoop={false}
       showThumbs={false}
       showStatus={false}
       interval={3000}
