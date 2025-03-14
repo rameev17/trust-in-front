@@ -10,13 +10,14 @@ import ImageModal from "../../components/Home/ImageModal.jsx";
 import DonationModal from "../../components/Home/DonationModal.jsx";
 import SubscriptionModal from "../../components/Home/SubscriptionModal.jsx";
 import SponsorsContainer from "../../components/Home/Sponsors.jsx";
+import { useTranslation } from "react-i18next";
 
 const Main = () => {
   const [isOpenImageModal, setIsOpenImageModal] = useState(false);
   const [isOpenDonationModal, setIsOpenDonationModal] = useState(false);
   const [isOpenSubscriptionModal, setIsOpenSubscriptionModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState();
-
+  const { locale } = useTranslation();
   const hanleOpenImageModal = () => {
     setIsOpenImageModal(true);
   };
@@ -52,9 +53,17 @@ const Main = () => {
         setIsOpen={setIsOpenSubscriptionModal}
       />
       <FixedButton
-        src={require("../../images/donate.png")}
-        hoverSrc={require("../../images/donateHover.png")}
-        onClick={() => hanleOpenDonationModal()}
+        src={
+          locale === "ru"
+            ? require("../../images/donate-ru.png")
+            : require("../../images/donate.png")
+        }
+        hoverSrc={
+          locale === "ru"
+            ? require("../../images/donateHover-ru.png")
+            : require("../../images/donateHover.png")
+        }
+        onClick={hanleOpenDonationModal}
       />
     </Container>
   );
