@@ -21,7 +21,7 @@ const NewsContainer = () => {
           <p className="nav-link-text primary-color">{t("news_all")}</p>
         </div>
       </div>
-      {(!data?.length || !data) && (
+      {(!filteredNewsData?.length || !filteredNewsData) && (
         <p className="description description-color">{t("news_empty")}</p>
       )}
 
