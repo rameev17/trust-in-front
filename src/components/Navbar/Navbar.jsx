@@ -16,6 +16,7 @@ const Navbar = ({ routes }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const { locale, setLocale } = useLocale();
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1024);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -27,17 +28,25 @@ const Navbar = ({ routes }) => {
     setActiveTab(`/${mainUrl}`);
   }, [mainUrl]);
 
-  const toggleLocale = () => {
-    const newLocale = locale === "kz" ? "ru" : "kz";
-    setLocale(newLocale);
-    i18n.changeLanguage(newLocale);
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <Container onMouseLeave={() => setDropdownOpen(null)}>
       <LogoContainer to="/home">
         <LogoImg src={require("../../images/logo.png")} alt="Logo" />
+        {!isSmallScreen && (
+          <LogoText src={require("../../images/navbar_text_1.PNG")}></LogoText>
+        )}
       </LogoContainer>
+      {isSmallScreen && (
+        <LogoSmallText src={require("../../images/navbar_text.PNG")} />
+      )}
       <MobileMenuIcon onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
         <MenuOutlined />
       </MobileMenuIcon>
@@ -129,10 +138,22 @@ const LogoContainer = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   color: #000;
+  gap: 12px;
 `;
 
 const LogoImg = styled.img`
   height: 60px;
+`;
+const LogoText = styled.img`
+  height: 60px;
+  width: 200px;
+  object-fit: cover;
+`;
+
+const LogoSmallText = styled.img`
+  height: 60px;
+  width: 250px;
+  object-fit: cover;
 `;
 
 const MobileMenuIcon = styled.div`
