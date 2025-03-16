@@ -50,7 +50,7 @@ const Footer = () => {
             ))}
           </SocialIcons>
           <ContactLinks>
-            <a href="tel:+77479141214">📞 +7 (707) 788 7020</a>
+            <a href="tel:+77077887020">📞 +7 (707) 788 7020</a>
             <br />
             <a href="mailto:agalqa@gmail.com">📩 agalqa@gmail.com</a>
           </ContactLinks>
