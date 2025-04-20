@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ModalCenter from "../Modal";
 import styled from "styled-components";
 import { Input } from "antd";
 import { TEXT_COLORS } from "../../helper/constants";
 import { useTranslation } from "react-i18next";
+import TipTopRecurringPayment from "./Subscription/TipTop";
 
 const SubscriptionModal = ({ isOpen, setIsOpen, selectedPlan }) => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormData({
+        firstName: "",
+        lastName: "",
+        year: "",
+        phone: "",
+        email: "",
+      });
+    }
+  }, [isOpen]);
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    year: "",
+    phone: "",
+    email: "",
+  });
+
+  const handleChange = (field) => (e) => {
+    setFormData({ ...formData, [field]: e.target.value });
+  };
+
+  const isFormValid = Object.values(formData).every((v) => v.trim() !== "");
 
   return (
     <ModalCenter isOpen={isOpen} setIsOpen={setIsOpen} width={"300px"}>
@@ -19,27 +46,58 @@ const SubscriptionModal = ({ isOpen, setIsOpen, selectedPlan }) => {
           </PriceText>
         </PriceContainer>
         <Form>
-          <Input placeholder="Имя" />
-          <Input placeholder="Фамилия" />
-          <Input placeholder="Год выпуска" />
-          <Input placeholder="Номер телефона" />
-          <Input placeholder="email" />
+          <Input
+            placeholder="Имя"
+            value={formData.firstName}
+            onChange={handleChange("firstName")}
+          />
+          <Input
+            placeholder="Фамилия"
+            value={formData.lastName}
+            onChange={handleChange("lastName")}
+          />
+          <Input
+            placeholder="Год выпуска"
+            value={formData.year}
+            onChange={handleChange("year")}
+          />
+          <Input
+            placeholder="Номер телефона"
+            value={formData.phone}
+            onChange={handleChange("phone")}
+          />
+          <Input
+            placeholder="Email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange("email")}
+          />
         </Form>
-        `<Button>{t("subscription_button")}</Button>
+        <TipTopRecurringPayment
+          amount={selectedPlan?.price}
+          accountId={formData.email}
+          label={selectedPlan?.title}
+          disabled={!isFormValid}
+          setIsOpenModal={setIsOpen}
+          email={formData.email}
+        />
       </Wrapper>
     </ModalCenter>
   );
 };
+
 const Wrapper = styled.div`
   display: flex;
   gap: 24px;
   flex-direction: column;
 `;
+
 const Form = styled.div`
   display: flex;
   gap: 12px;
   flex-direction: column;
 `;
+
 const Title = styled.div`
   font-size: 24px;
   line-height: 32px;
@@ -48,6 +106,7 @@ const Title = styled.div`
   color: ${TEXT_COLORS.PRIMARY_COLOR};
   font-family: "Roboto", sans-serif;
 `;
+
 const PriceContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -55,42 +114,21 @@ const PriceContainer = styled.div`
   justify-content: space-between;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-
   padding: 4px 0px;
 `;
+
 const PriceName = styled.p`
   font-size: 18px;
   line-height: 32px;
-  text-align: left;
   font-weight: 600;
   color: #222;
-  font-family: "Roboto", sans-serif;
 `;
+
 const PriceText = styled.p`
   font-size: 18px;
   line-height: 32px;
-  text-align: left;
   font-weight: 400;
   color: #222;
-  font-family: "Roboto", sans-serif;
-`;
-const Button = styled.div`
-  background-color: ${TEXT_COLORS.PRIMARY_COLOR};
-  color: white;
-  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
-  border-radius: 12px;
-  text-align: center;
-  font-weight: 700;
-  font-family: "Roboto", sans-serif;
-  padding: 8px 12px;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  cursor: pointer;
-
-  &:hover {
-    background-color: white;
-    color: ${TEXT_COLORS.PRIMARY_COLOR};
-    border-color: ${TEXT_COLORS.PRIMARY_COLOR};
-  }
 `;
 
 export default SubscriptionModal;

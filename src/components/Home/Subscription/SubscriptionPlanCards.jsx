@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 
 const CardContainer = ({ hanleOpenSubscriptionModal, cards }) => {
   const { t } = useTranslation();
-
   return (
     <Container>
       {cards.map((card, index) => (

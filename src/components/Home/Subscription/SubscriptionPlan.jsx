@@ -27,7 +27,14 @@ const SubscriptionPlan = ({ hanleOpenSubscriptionModal }) => {
       )}
 
       <Link>
-        {t("subscription_link_1")} <a>{t("subscription_link_2")}</a>{" "}
+        {t("subscription_link_1")}{" "}
+        <a
+          href="https://my.tiptoppay.kz/ru/unsubscribe"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {t("subscription_link_2")}
+        </a>{" "}
         {t("subscription_link_3")}
       </Link>
     </div>

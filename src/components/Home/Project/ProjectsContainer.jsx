@@ -30,7 +30,12 @@ const ProjectsContainer = (news) => {
 
       <Cards>
         {filteredData?.map((project, index) => (
-          <ProjectsCard data={project} isOpen={isOpen} setIsOpen={setIsOpen} />
+          <ProjectsCard
+            data={project}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            key={index}
+          />
         ))}
       </Cards>
       <DonationModal isOpen={isOpen} setIsOpen={setIsOpen} />
