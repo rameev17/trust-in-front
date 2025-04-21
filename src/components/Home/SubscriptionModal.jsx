@@ -74,12 +74,10 @@ const SubscriptionModal = ({ isOpen, setIsOpen, selectedPlan }) => {
           />
         </Form>
         <TipTopRecurringPayment
-          amount={selectedPlan?.price}
-          accountId={formData.email}
-          label={selectedPlan?.title}
+          selectedPlan={selectedPlan}
+          formData={formData}
           disabled={!isFormValid}
           setIsOpenModal={setIsOpen}
-          email={formData.email}
         />
       </Wrapper>
     </ModalCenter>

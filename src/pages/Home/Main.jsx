@@ -36,7 +36,7 @@ const Main = () => {
           hanleOpenSubscriptionModal={hanleOpenSubscriptionModal}
         />
         <ProjectsContainer />
-        <ShopContainer />
+        {/* <ShopContainer /> */}
         <NewsContainer />
         <EventContainer />
         <SponsorsContainer />

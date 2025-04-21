@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TEXT_COLORS } from "../../../helper/constants";
 import styled from "styled-components";
+import { useSubscribe } from "../../../api/subscription";
 
 const TipTopRecurringPayment = ({
-  amount,
-  accountId,
-  label,
-  email,
+  selectedPlan,
+  formData,
   disabled,
   setIsOpenModal,
 }) => {
@@ -29,6 +28,7 @@ const TipTopRecurringPayment = ({
   const generateInvoiceId = () => {
     return "inv_" + Math.random().toString(36).substring(2, 10);
   };
+  const { mutate } = useSubscribe();
 
   const handlePay = () => {
     if (!scriptLoaded || !window.tiptop) return;
@@ -40,21 +40,21 @@ const TipTopRecurringPayment = ({
     const receipt = {
       Items: [
         {
-          label: label || "Наименование товара",
-          price: amount,
+          label: selectedPlan?.title || "Наименование товара",
+          price: selectedPlan?.price,
           quantity: 1,
-          amount: amount,
+          amount: selectedPlan?.price,
           vat: 0,
           method: 0,
           object: 0,
         },
       ],
       taxationSystem: 0,
-      email: email || "",
+      email: formData?.email || "",
       phone: "",
       isBso: false,
       amounts: {
-        electronic: amount,
+        electronic: selectedPlan?.price,
       },
     };
 
@@ -72,15 +72,16 @@ const TipTopRecurringPayment = ({
     widget.charge(
       {
         publicId: "pk_ccc85fa0fa1bc04dcffebc7253e35",
-        description: `Подписка на ежемесячный доступ ${label}`,
-        amount: amount,
+        description: `Подписка на ежемесячный доступ ${selectedPlan?.title}`,
+        amount: selectedPlan?.price,
         currency: "KZT",
         invoiceId: invoiceId,
-        accountId: accountId,
+        accountId: formData?.email || "",
         data: data,
       },
       function (options) {
         console.log("✅ Успешная оплата", options);
+        mutate({ planId: selectedPlan?.id, formData: formData });
         setIsOpenModal(false);
       },
       function (reason, options) {
@@ -112,6 +113,14 @@ const Button = styled.button`
     background-color: white;
     color: ${TEXT_COLORS.PRIMARY_COLOR};
     border-color: ${TEXT_COLORS.PRIMARY_COLOR};
+  }
+
+  &:disabled {
+    background-color: ${TEXT_COLORS.PRIMARY_COLOR};
+    color: rgba(255, 255, 255, 0.6);
+    border-color: ${TEXT_COLORS.PRIMARY_COLOR};
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 `;
 export default TipTopRecurringPayment;

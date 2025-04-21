@@ -62,7 +62,7 @@ const Footer = () => {
             links: [
               { text: t("footer_nav_home"), href: "/home" },
               { text: t("footer_nav_about"), href: "/home/about" },
-              { text: t("footer_nav_merch"), href: "#services" },
+              // { text: t("footer_nav_merch"), href: "#services" },
               { text: t("footer_nav_alumni"), href: "/alumni" },
             ],
           },
