@@ -40,13 +40,8 @@ const Navbar = ({ routes }) => {
     <Container onMouseLeave={() => setDropdownOpen(null)}>
       <LogoContainer to="/home">
         <LogoImg src={require("../../images/logo.png")} alt="Logo" />
-        {!isSmallScreen && (
-          <LogoText src={require("../../images/navbar_text_1.PNG")}></LogoText>
-        )}
-      </LogoContainer>
-      {isSmallScreen && (
         <LogoSmallText src={require("../../images/navbar_text.PNG")} />
-      )}
+      </LogoContainer>
       <MobileMenuIcon onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
         <MenuOutlined />
       </MobileMenuIcon>
@@ -152,8 +147,13 @@ const LogoText = styled.img`
 
 const LogoSmallText = styled.img`
   height: 60px;
-  width: 250px;
+  width: 350px;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    height: 50px;
+    width: 200px;
+  }
 `;
 
 const MobileMenuIcon = styled.div`
