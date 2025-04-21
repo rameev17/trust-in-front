@@ -17,7 +17,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProjectsRouter from "./pages/Projects/router";
 import NewsRouter from "./pages/News/router";
-import { use } from "react";
 import { useTranslation } from "react-i18next";
 
 function App() {
