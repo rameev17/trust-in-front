@@ -15,14 +15,15 @@ const teamData = [
     role: "Астана қ. студент менеджері",
     year: "Есік БИЛ ‘11",
     contact: "+7 707 363 4115",
-    image: require("../../images/kenes2.JPG"),
+    image: require("../../images/kenes3.PNG"),
   },
   {
     name: "Абдулла Әбілмансұр",
     role: "Алматы қ. студент менеджері",
     year: "Есік БИЛ ‘23",
     contact: "+7 708 718 3998",
-    image: require("../../images/kenes3.PNG"),
+    image: require("../../images/kenes2.JPG"),
+
   },
 ];
 const TeamPage = () => {
