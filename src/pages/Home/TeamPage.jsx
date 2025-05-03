@@ -23,7 +23,6 @@ const teamData = [
     year: "Есік БИЛ ‘23",
     contact: "+7 708 718 3998",
     image: require("../../images/kenes2.JPG"),
-
   },
 ];
 const TeamPage = () => {
