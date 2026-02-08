@@ -17,11 +17,11 @@ const ProjectsCard = ({ data, setIsOpen }) => {
     return (data?.donated_money / data?.goal_money) * 100;
   }, [data?.donated_money, data?.goal_money]);
 
-  let progressColor = "#FF4D4F";
+  let progressColor = "#0A3456";
   if (donatedPercentage >= 80) {
-    progressColor = "#52C41A";
+    progressColor = "#0A3456";
   } else if (donatedPercentage >= 50) {
-    progressColor = "#FAAD14";
+    progressColor = "#159AD7";
   }
   return (
     <CardContainer>

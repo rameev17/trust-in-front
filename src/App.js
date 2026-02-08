@@ -95,19 +95,21 @@ function App() {
       <NavbarWrapper className={isNavbarFixed ? "fixed" : ""}>
         <Navbar routes={routes} />
       </NavbarWrapper>
-      <AnimatePresence>
-        <Routes>
-          {routes.map((route, i) => (
-            <Route
-              path={route.path}
-              element={<MotionWrapper>{route.element}</MotionWrapper>}
-              key={i}
-            />
-          ))}
+      <ContentWrapper>
+        <AnimatePresence>
+          <Routes>
+            {routes.map((route, i) => (
+              <Route
+                path={route.path}
+                element={<MotionWrapper>{route.element}</MotionWrapper>}
+                key={i}
+              />
+            ))}
 
-          <Route index element={<Navigate to="/home" />} />
-        </Routes>
-      </AnimatePresence>
+            <Route index element={<Navigate to="/home" />} />
+          </Routes>
+        </AnimatePresence>
+      </ContentWrapper>
 
       <Footer />
     </Container>
@@ -115,17 +117,31 @@ function App() {
 }
 const Container = styled.div`
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
+const ContentWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  
+  @media (max-width: 768px) {
+    padding-top: 70px;
+  }
 `;
 
 const NavbarWrapper = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
-
   left: 0;
   width: 100%;
   z-index: 100;
   background-color: ${({ isNavbarFixed }) =>
-    isNavbarFixed ? "#222222" : "#fdfdfd"};
+    isNavbarFixed ? "#222222" : "#fff"};
   transition: background-color 0.3s ease;
 `;
 

@@ -11,6 +11,10 @@ const ProjectsContainer = (news) => {
   const { t } = useTranslation();
   const filteredData = data?.slice(0, 4);
 
+  if (!data?.length || !data) {
+    return null;
+  }
+
   return (
     <div className="main-page-wrapper">
       <div className="header">
@@ -24,9 +28,6 @@ const ProjectsContainer = (news) => {
           <p className="nav-link-text primary-color">{t("projects_all")}</p>
         </div>
       </div>
-      {(!data?.length || !data) && (
-        <p className="description description-color">{t("projects_empty")}</p>
-      )}
 
       <Cards>
         {filteredData?.map((project, index) => (

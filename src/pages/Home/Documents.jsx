@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { TEXT_COLORS } from "../../helper/constants";
+import PageContainer from "../../components/PageContainer";
 
 const DocumentPage = () => {
   const openDOCX = (fileName) => {
@@ -9,13 +10,14 @@ const DocumentPage = () => {
   };
 
   return (
-    <Container>
-      <Title>Список документов</Title>
+    <PageContainer>
+      <Container>
+        <Title>Список документов</Title>
       <DocumentList>
         <DocumentCard>
           <DocumentTitle>Қоғамдық оферта</DocumentTitle>
           <StyledLink
-            href={require("../../documents/kogam.pdf")}
+            href={require("../../documents/public.pdf")}
             target="_blank"
           >
             <Button>Открыть</Button>
@@ -24,7 +26,7 @@ const DocumentPage = () => {
         <DocumentCard>
           <DocumentTitle>Құпиялық саясаты</DocumentTitle>
           <StyledLink
-            href={require("../../documents/kupiya.pdf")}
+            href={require("../../documents/politics.pdf")}
             target="_blank"
           >
             <Button>Открыть</Button>
@@ -33,14 +35,15 @@ const DocumentPage = () => {
         <DocumentCard>
           <DocumentTitle>Онлайн төлемдер қауіпсіздігі</DocumentTitle>
           <StyledLink
-            href={require("../../documents/online.pdf")}
+            href={require("../../documents/payment.pdf")}
             target="_blank"
           >
             <Button>Открыть</Button>
           </StyledLink>
         </DocumentCard>
       </DocumentList>
-    </Container>
+      </Container>
+    </PageContainer>
   );
 };
 
@@ -49,8 +52,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  min-height: 70vh;
+  width: 100%;
   justify-content: center;
 `;
 

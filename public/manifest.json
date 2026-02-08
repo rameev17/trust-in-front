@@ -1,6 +1,6 @@
 {
-  "short_name": "Есік БИЛ",
-  "name": "Есік БИЛ түлектерінің “AĠALQA” атты қоғамдық бірлестігі",
+  "short_name": "Atyrau BIL Alumni",
+  "name": "Atyrau BIL Alumni Association",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#0A3456",
   "background_color": "#ffffff"
 }

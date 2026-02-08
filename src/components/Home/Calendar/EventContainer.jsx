@@ -10,7 +10,9 @@ const EventContainer = () => {
   const { data: yearCalendar } = useGetYearCalendar();
   const { data } = useGetCalendar();
 
-  const noData = !data || data.length === 0;
+  if (!data?.length || !data) {
+    return null;
+  }
   
   return (
     <div className="main-page-wrapper">
@@ -23,11 +25,7 @@ const EventContainer = () => {
         )}
       </div>
 
-      {!data?.length || !data ? (
-        <p className="description description-color">{t("projects_empty")}</p>
-      ) : (
-        <ImageCarousel data={data} />
-      )}
+      <ImageCarousel data={data} />
       <ImageCarouselWithModal
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}

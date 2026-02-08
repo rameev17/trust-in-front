@@ -8,6 +8,11 @@ const NewsContainer = () => {
   const { t } = useTranslation();
   const { data } = useGetFilteredNews();
   const filteredNewsData = data?.news?.slice(0, 3);
+  
+  if (!filteredNewsData?.length || !filteredNewsData) {
+    return null;
+  }
+
   return (
     <div className="main-page-wrapper">
       <div className="header">
@@ -21,9 +26,6 @@ const NewsContainer = () => {
           <p className="nav-link-text primary-color">{t("news_all")}</p>
         </div>
       </div>
-      {(!filteredNewsData?.length || !filteredNewsData) && (
-        <p className="description description-color">{t("news_empty")}</p>
-      )}
 
       <Cards>
         {filteredNewsData?.map((news, index) => (

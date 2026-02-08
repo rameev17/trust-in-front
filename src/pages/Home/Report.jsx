@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Table, Space, Spin, Alert } from "antd";
+import { Table, Space, Alert } from "antd";
 import { useGetReports } from "../../api/reports";
 import { FilePdfOutlined } from "@ant-design/icons";
+import PageContainer from "../../components/PageContainer";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const ReportPage = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -22,17 +24,17 @@ const ReportPage = () => {
 
   if (isLoading) {
     return (
-      <div className="spin">
-        <Spin size="large" />
-      </div>
+      <PageContainer>
+        <LoadingSpinner />
+      </PageContainer>
     );
   }
 
   if (isError) {
     return (
-      <div className="spin">
+      <PageContainer>
         <Alert message={`Ошибка: ${error.message}`} type="error" />
-      </div>
+      </PageContainer>
     );
   }
 
@@ -97,7 +99,7 @@ const ReportPage = () => {
   ];
 
   return (
-    <div className="page-container">
+    <PageContainer>
       <div className="content-wrapper">
         <div className="header">
           <h1 className="title primary-color">Қаржылай есептер</h1>
@@ -112,7 +114,7 @@ const ReportPage = () => {
           scroll={isSmallScreen ? { y: 400 } : undefined}
         />
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

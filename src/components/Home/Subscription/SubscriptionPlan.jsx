@@ -8,6 +8,11 @@ import { useTranslation } from "react-i18next";
 const SubscriptionPlan = ({ hanleOpenSubscriptionModal }) => {
   const { t } = useTranslation();
   const { data } = useGetSubscription();
+  
+  if (!data?.length || !data) {
+    return null;
+  }
+
   return (
     <div className="main-page-wrapper">
       <div className="header">
@@ -15,16 +20,10 @@ const SubscriptionPlan = ({ hanleOpenSubscriptionModal }) => {
       </div>
 
       <Description>{t("subscription_description")}</Description>
-      {data && data?.length ? (
-        <CardContainer
-          hanleOpenSubscriptionModal={hanleOpenSubscriptionModal}
-          cards={data}
-        />
-      ) : (
-        <p className="description description-color">
-          {t("subscription_empty")}
-        </p>
-      )}
+      <CardContainer
+        hanleOpenSubscriptionModal={hanleOpenSubscriptionModal}
+        cards={data}
+      />
 
       <Link>
         {t("subscription_link_1")}{" "}

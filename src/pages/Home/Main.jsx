@@ -54,8 +54,8 @@ const Main = () => {
       <FixedButton
         src={
           locale === "ru"
-            ? require("../../images/donate-ru.png")
-            : require("../../images/donate.png")
+            ? require("../../images/donateImg.png")
+            : require("../../images/donateImg.png")
         }
         hoverSrc={
           locale === "ru"

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useGetStatistics } from "../../api/statistics";
+import backgroundImage from "../../images/background-image.png";
 
 const MainInformation = ({ hanleOpenImageModal }) => {
   const [showCounters, setShowCounters] = useState(false);
@@ -30,10 +31,11 @@ const MainInformation = ({ hanleOpenImageModal }) => {
         <Content>
           <TextContainer>
             <Title>
-              {t("main_title_1")}
-              <Title style={{ color: "#FBBC58" }}>“AĠALQA”</Title>
+              {t("main_title_1")} 
             </Title>
-            <Title>{t("main_title_2")}</Title>
+            <Title>
+              {t("main_title_2")}
+            </Title>
           </TextContainer>
           <Counters isVisible={showCounters}>
             <Counter
@@ -72,20 +74,12 @@ const ImageContainer = styled.div`
   height: 100%;
   position: relative;
   padding: 0px 150px;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(${require("../../images/back.jpg")});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: -1;
-  }
-
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 0;
+  
   &::after {
     content: "";
     position: absolute;
@@ -95,13 +89,13 @@ const ImageContainer = styled.div`
     height: 100%;
     background: linear-gradient(
       to bottom,
-      rgba(28, 28, 29, 0.9),
-      rgba(8, 8, 27, 0.7)
+      rgba(28, 28, 29, 0.05),
+      rgba(8, 8, 27, 0.02)
     );
-    z-index: -1;
+    z-index: 1;
   }
   @media (max-width: 768px) {
-    padding: 0px 48px;
+    padding: 0px 24px;
   }
 `;
 
@@ -112,6 +106,7 @@ const Content = styled.div`
   align-items: center;
   height: 100%;
   position: relative;
+  z-index: 2;
   gap: 48px;
   @media (max-width: 768px) {
     gap: 16px;

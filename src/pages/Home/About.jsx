@@ -2,16 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { TEXT_COLORS } from "../../helper/constants";
+import { useGetAbout } from "../../api/about";
+import useLocale from "../../locale/useLocale";
+import PageContainer from "../../components/PageContainer";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const AboutContainer = styled.div`
   font-family: "Arial", sans-serif;
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-
-  @media (max-width: 768px) {
-    padding: 15px;
-  }
+  width: 100%;
 `;
 
 const Header = styled(motion.div)`
@@ -61,7 +59,7 @@ const Paragraph = styled.p`
 `;
 
 const ListTitle = styled.h3`
-  color: #2c3e50;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   font-size: 24px;
   margin-bottom: 15px;
 
@@ -90,18 +88,23 @@ const List = styled.ul`
 `;
 
 const ListItem = styled(motion.li)`
-  background-color: #f7f7f7;
+  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
+  box-shadow: 0 4px 8px rgba(10, 52, 86, 0.1);
   font-size: 18px;
   line-height: 1.6;
   cursor: pointer;
   transition: all 0.3s ease;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(21, 154, 215, 0.3);
+    border-color: ${TEXT_COLORS.SECONDARY_COLOR};
+    background-color: ${TEXT_COLORS.SECONDARY_COLOR};
+    color: #fff;
   }
 
   @media (max-width: 768px) {
@@ -111,37 +114,37 @@ const ListItem = styled(motion.li)`
 `;
 
 const About = () => {
+  const { locale } = useLocale();
+  const { data, isLoading, isError } = useGetAbout(locale);
+
+  if (isLoading) {
+    return (
+      <PageContainer>
+        <LoadingSpinner />
+      </PageContainer>
+    );
+  }
+
+  if (isError || !data) {
+    return (
+      <PageContainer>
+        <Paragraph>Ошибка загрузки данных</Paragraph>
+      </PageContainer>
+    );
+  }
+
   return (
-    <AboutContainer>
+    <PageContainer>
+      <AboutContainer>
       <Header
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <Title>Бірлестік туралы</Title>
-        <Paragraph>
-          Есік ҚТЛ (қазіргі БИЛ) түлектерінің “AĠALQA” қоғамдық бірлестігі 2015
-          жылы желтоқсан айының 23-інде арнайы жобамен айналысатын заңды ұйым
-          түрінде ашылды.
-        </Paragraph>
-        <Paragraph>
-          Жанашыр түлектердің бастамасымен ашылған бірлестіктің басты мақсаты –
-          қоғамға пайдалы болу. Мақсатты жүзеге асыру үшін біз екі бағытта жұмыс
-          жасаймыз.
-        </Paragraph>
-        <Paragraph>
-          ⦁ Лицей түлектерінің қарым-қатынасын нығайта отырып, бірлескен
-          қоғамдық іс-шараларды жүзеге асыру;
-        </Paragraph>
-        <Paragraph>
-          ⦁ Лицейдің жан-жақты дамуы үшін қаржылық, әлеуметтік,
-          мәдени-ағартушылық және басқа да қолдаулар көрсету.
-        </Paragraph>
-        <Paragraph>
-          “Жұмыла көтерген жүк жеңіл” дейді. Барлық лицей түлектері, біз
-          Сіздерді осы игі істе жұдырықтай жұмылып, лицейдің дамуына өз
-          үлестеріңізді қосуға шақырамыз!
-        </Paragraph>
+        <Title>{data.title}</Title>
+        {data.paragraphs?.map((paragraph, index) => (
+          <Paragraph key={index}>{paragraph}</Paragraph>
+        ))}
       </Header>
 
       <Mission
@@ -149,14 +152,8 @@ const About = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
-        <Title>Біздің миссия</Title>
-        <Paragraph>
-          AGALQA миссиясы - бiрлестiктiң қоғамға пайдалы бастамалары төңірегінде
-          түлектерді топтастыру, еріктілік, альтруизм және құлшынысқа
-          негізделген демеушілік пен қайырымдылық жұмыстары арқылы елді,
-          мемлекетті көркейту жолында белсенділікке шақырып жасампаздыққа
-          ынталандыру.
-        </Paragraph>
+        <Title>{data.mission_title}</Title>
+        <Paragraph>{data.mission_text}</Paragraph>
       </Mission>
 
       <Goals
@@ -164,49 +161,21 @@ const About = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
       >
-        <ListTitle>Мақсатымыз:</ListTitle>
+        <ListTitle>{data.goals_title}</ListTitle>
         <List>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Түлектердің қоғамдық жауапкершілігін қолдау және қоғамдық іс
-            шараларға еліктіру;
-          </ListItem>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Лицейдің материалды-техникалық базасын нығайту;
-          </ListItem>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Лицейді дамыту бойынша іс-шараларды жүзеге асыруда тәжірибе алмасу
-            және тарату;
-          </ListItem>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Қайырымдылық, грант, стипендия, наградалар және заңмен тыйым
-            салынбаған басқа әдістер арқылы лицейдің оқушылары мен түлектеріне
-            көмек көрсету және/немесе қолдау (соның ішінде қаржылық қолдау);
-          </ListItem>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Мұқтаж және әлеуметтік әлсіз лицей оқушылары мен түлектеріне
-            қайырымдылық көмек көрсету;
-          </ListItem>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Лицейдің ғылыми-білім, әлеуметтік-мәдени, шығармашылық, спорттық
-            және басқа жобаларға қолдау көрсету;
-          </ListItem>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Түлектердің тұлғалық және кәсіби өсуі, өзара тәжірибе алмасу
-            мақсатында олардың интеллектуалды және іскерлік қабілеттерін
-            біріктіру;
-          </ListItem>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Семинарлар, дөңгелек үстелдер, талқылаулар, спорттық, мәдени және
-            басқа да іс-шараларды ұйымдастыру;
-          </ListItem>
-          <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            Түлектердің тұлғалық қызығушылықтары, практикалық тәжірибелері мен
-            қабілеттеріне сәйкес тағылымдама және жұмыс орнын таңдауларына
-            қолдау көрсету
-          </ListItem>
+          {data.goals?.map((goal, index) => (
+            <ListItem
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              {goal}
+            </ListItem>
+          ))}
         </List>
       </Goals>
-    </AboutContainer>
+      </AboutContainer>
+    </PageContainer>
   );
 };
 

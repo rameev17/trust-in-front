@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Spin, Descriptions, Button, Alert } from "antd";
+import { Descriptions, Button, Alert } from "antd";
 import { useGetVacansyById } from "../../api/vacansy";
+import PageContainer from "../../components/PageContainer";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const VacansyPage = () => {
   const { id } = useParams();
@@ -9,22 +11,22 @@ const VacansyPage = () => {
 
   if (isLoading) {
     return (
-      <div className="spin">
-        <Spin size="large" />
-      </div>
+      <PageContainer>
+        <LoadingSpinner />
+      </PageContainer>
     );
   }
 
   if (isError) {
     return (
-      <div className="spin">
+      <PageContainer>
         <Alert message={`Ошибка: ${error.message}`} type="error" />
-      </div>
+      </PageContainer>
     );
   }
 
   return (
-    <div className="page-container">
+    <PageContainer>
       <div className="content-wrapper">
         <h1>{vacancy.position}</h1>
         <Descriptions bordered column={1}>
@@ -45,7 +47,7 @@ const VacansyPage = () => {
           </Descriptions.Item>
         </Descriptions>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

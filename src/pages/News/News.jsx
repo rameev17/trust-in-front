@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { Pagination as AntPagination, Spin } from "antd";
+import { Pagination as AntPagination } from "antd";
 import NewsCard from "../../components/Home/News/NewsCard";
 import { useGetFilteredNews } from "../../api/news";
 import { TEXT_COLORS } from "../../helper/constants";
+import PageContainer from "../../components/PageContainer";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const News = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,22 +22,22 @@ const News = () => {
 
   if (isLoading) {
     return (
-      <LoaderContainer>
-        <Spin size="large" />
-      </LoaderContainer>
+      <PageContainer>
+        <LoadingSpinner />
+      </PageContainer>
     );
   }
 
   if (isError) {
     return (
-      <ErrorContainer>
-        <p>Error loading news. Please try again later.</p>
-      </ErrorContainer>
+      <PageContainer>
+        <ErrorText>Error loading news. Please try again later.</ErrorText>
+      </PageContainer>
     );
   }
 
   return (
-    <Container>
+    <PageContainer>
       <Header>
         <Title>Жаңалықтар</Title>
       </Header>
@@ -61,35 +63,14 @@ const News = () => {
           showSizeChanger={false}
         />
       </PaginationContainer>
-    </Container>
+    </PageContainer>
   );
 };
 
-const LoaderContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ErrorContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ff4d4f;
-`;
-
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+const ErrorText = styled.p`
   text-align: center;
-  padding: 20px;
-  min-height: 70vh;
-
-  @media (max-width: 768px) {
-    padding: 15px;
-  }
+  color: #ff4d4f;
+  padding: 50px;
 `;
 
 const Header = styled.div`

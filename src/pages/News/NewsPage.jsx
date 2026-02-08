@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Spin, Button, Typography, Row, Col, Card } from "antd";
+import { Button, Typography, Row, Col, Card } from "antd";
 import { useGetNewsById } from "../../api/news";
 import { RWebShare } from "react-web-share";
+import PageContainer from "../../components/PageContainer";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const { Title, Paragraph } = Typography;
 
@@ -38,43 +40,30 @@ const NewsPage = () => {
 
   if (isLoading) {
     return (
-      <div
-        style={{
-          textAlign: "center",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Spin size="large" />
-      </div>
+      <PageContainer>
+        <LoadingSpinner />
+      </PageContainer>
     );
   }
 
   if (isError) {
     return (
-      <div
-        style={{
-          textAlign: "center",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      ></div>
+      <PageContainer>
+        <div
+          style={{
+            textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "400px",
+          }}
+        ></div>
+      </PageContainer>
     );
   }
 
   return (
-    <div
-      style={{
-        padding: "50px 24px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        minHeight: "65vh",
-      }}
-    >
+    <PageContainer>
       <Row gutter={[20, 20]} justify="center">
         <Col xs={24} md={16}>
           <Card
@@ -89,7 +78,7 @@ const NewsPage = () => {
               level={1}
               style={{
                 fontWeight: "bold",
-                color: "#333",
+                color: "#0A3456",
                 fontSize: titleFontSize,
               }}
             >
@@ -108,12 +97,12 @@ const NewsPage = () => {
                 }}
               />
             )}
-            <Paragraph style={{ fontSize: descriptionFontSize, color: "#555" }}>
+            <Paragraph style={{ fontSize: descriptionFontSize, color: "#0A3456" }}>
               {news?.[0]?.description}
             </Paragraph>
 
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <p style={{ fontSize: "14px", color: "#777" }}>
+              <p style={{ fontSize: "14px", color: "#0A3456" }}>
                 Жарияланған күні:{" "}
                 {new Date(news?.[0]?.created_at).toLocaleDateString()}
               </p>
@@ -131,7 +120,7 @@ const NewsPage = () => {
           </Card>
         </Col>
       </Row>
-    </div>
+    </PageContainer>
   );
 };
 

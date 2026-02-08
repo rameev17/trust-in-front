@@ -39,8 +39,7 @@ const Navbar = ({ routes }) => {
   return (
     <Container onMouseLeave={() => setDropdownOpen(null)}>
       <LogoContainer to="/home">
-        <LogoImg src={require("../../images/logo.png")} alt="Logo" />
-        <LogoSmallText src={require("../../images/navbar_text.PNG")} />
+        <LogoImg src={require("../../images/logo_atyrau.png")} alt="ATYRAU BIL ALUMNI ASSOCIATION Logo" />
       </LogoContainer>
       <MobileMenuIcon onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
         <MenuOutlined />
@@ -119,9 +118,9 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 8px 150px;
-  background: #fdfdfd;
+  background: #fff;
   align-items: center;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 12px rgba(10, 52, 86, 0.1);
 
   @media (max-width: 768px) {
     padding: 8px 24px;
@@ -132,27 +131,17 @@ const LogoContainer = styled(NavLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #000;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   gap: 12px;
 `;
 
 const LogoImg = styled.img`
-  height: 60px;
-`;
-const LogoText = styled.img`
-  height: 60px;
-  width: 200px;
-  object-fit: cover;
-`;
-
-const LogoSmallText = styled.img`
-  height: 60px;
-  width: 350px;
-  object-fit: cover;
+  height: 80px;
+  object-fit: contain;
 
   @media (max-width: 768px) {
     height: 50px;
-    width: 200px;
+    width: 280px;
   }
 `;
 
@@ -175,8 +164,8 @@ const RightSide = styled.div`
     top: 100%;
     left: 0;
     width: 100%;
-    background: #fdfdfd;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    box-shadow: 0px 4px 12px rgba(10, 52, 86, 0.1);
     flex-direction: column;
     max-height: ${(props) => (props.isOpen ? "fit-content" : "0")};
     overflow: ${(props) => (props.isOpen ? "visible" : "hidden")};
@@ -204,12 +193,12 @@ const NavItem = styled(NavLink)`
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  color: #000;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   transition: color 0.3s;
 
   &.active,
   &:hover {
-    color: ${TEXT_COLORS.PRIMARY_COLOR};
+    color: ${TEXT_COLORS.SECONDARY_COLOR};
   }
 `;
 
@@ -235,12 +224,12 @@ const DropdownItem = styled(NavLink)`
   display: block;
   padding: 8px 16px;
   font-size: 16px;
-  color: #222;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   text-decoration: none;
-  transition: opacity 0.3s;
+  transition: color 0.3s;
 
   &:hover {
-    opacity: 0.6;
+    color: ${TEXT_COLORS.SECONDARY_COLOR};
   }
 `;
 const LocaleSwitcher = styled.div`

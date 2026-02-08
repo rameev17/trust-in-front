@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import ProjectsCard from "../../components/Home/Project/ProjectsCard";
 import { useGetFilteredProjects } from "../../api/project";
-import { Alert, Pagination as AntPagination, Button, Spin } from "antd";
+import { Alert, Pagination as AntPagination, Button } from "antd";
+import PageContainer from "../../components/PageContainer";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,22 +29,22 @@ const Projects = () => {
 
   if (isLoading) {
     return (
-      <div className="spin">
-        <Spin size="large" />
-      </div>
+      <PageContainer>
+        <LoadingSpinner />
+      </PageContainer>
     );
   }
 
   if (isError) {
     return (
-      <div className="spin">
+      <PageContainer>
         <Alert message={`Қате: ${error.message}`} type="error" />
-      </div>
+      </PageContainer>
     );
   }
 
   return (
-    <div className="page-container">
+    <PageContainer>
       <div className="content-wrapper">
         <div className="header">
           <h1 className="title primary-color">Жобалар</h1>
@@ -79,22 +81,24 @@ const Projects = () => {
           showSizeChanger={false}
         />
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
 const Card = styled(motion.div)`
   background: #fff;
   border-radius: 8px;
+  border: 1px solid #0A3456;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(10, 52, 86, 0.1);
   text-align: left;
   align-items: center;
   display: flex;
   justify-content: center;
 
   &:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(21, 154, 215, 0.3);
+    border-color: #159AD7;
   }
 `;
 

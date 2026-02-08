@@ -14,10 +14,10 @@ i18n.use(initReactI18next).init({
         header_vacancy: "Вакансия",
         header_news: "Жаңалықтар",
         header_projects: "Жобалар",
-        main_title_1: "Есік БИЛ түлектерінің",
+        main_title_1: "Атырау БИЛ түлектерінің",
         main_title_2: "атты қоғамдық бірлестігі",
         counter_1: "лицей түлектерінің саны",
-        counter_2: "бірлестік ашылғалы жиналған қаржылай көмек",
+        counter_2: " ашылғалы жиналған қаржылай көмек",
         counter_3: "қолдау білдірген түлек саны",
         subscription_header: "Тарифтік жоспар",
         subscription_description:
@@ -63,7 +63,7 @@ i18n.use(initReactI18next).init({
         footer_doc_privacy: "Құпиялық саясаты",
         footer_doc_payment: "Онлайн төлем қауіпсіздігі",
         footer_text:
-          "© 2015 Есік БИЛ түлектерінің “АҒАЛҚА” атты қоғамдық бірлестігі",
+          "© 2019 Atyrau BIL Alumni Association",
       },
     },
     ru: {
@@ -77,11 +77,11 @@ i18n.use(initReactI18next).init({
         header_vacancy: "Вакансия",
         header_news: "Новости",
         header_projects: "Проекты",
-        main_title_1: "Общественное объединение",
-        main_title_2: "ассоциация выпускников Есик БИЛ",
+        main_title_1: "Atyrau BIL",
+        main_title_2: "Alumni Association",
         counter_1: "Количество выпускников лицея",
         counter_2:
-          "Собранная финансовая помощь с момента открытия Общественное объединение",
+          "Собранная финансовая помощь с момента открытия",
         counter_3: "Количество выпускников, оказавших поддержку",
         subscription_header: "Тарифный план",
         subscription_description:
@@ -127,7 +127,7 @@ i18n.use(initReactI18next).init({
         footer_doc_privacy: "Политика конфиденциальности",
         footer_doc_payment: "Безопасные онлайн платежи",
         footer_text:
-          "© 2015 Общественное объединение “АҒАЛҚА” ассоциация выпускников Есик БИЛ",
+          "© 2019 Atyrau BIL Alumni Association",
       },
     },
   },

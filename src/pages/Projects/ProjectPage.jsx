@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Button, Row, Col, Progress, Spin, message, Alert } from "antd";
+import { Button, Row, Col, Progress, message, Alert } from "antd";
 import { useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 
 import { useGetProjectById } from "../../api/project";
 import DonationModal from "../../components/Home/DonationModal";
 import { formatNumberWithSpaces, getDaysLeft } from "../../helper/getDaysLeft";
+import PageContainer from "../../components/PageContainer";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const PROGRESS_COLORS = [
-  { threshold: 80, color: "#52C41A" },
-  { threshold: 50, color: "#FAAD14" },
-  { threshold: 0, color: "#FF4D4F" },
+  { threshold: 80, color: "#0A3456" },
+  { threshold: 50, color: "#159AD7" },
+  { threshold: 0, color: "#0A3456" },
 ];
 
 const ProjectPage = () => {
@@ -21,7 +23,7 @@ const ProjectPage = () => {
   const progressPercentage = (data?.donated_money / data?.goal_money) * 100;
   const progressColor =
     PROGRESS_COLORS.find(({ threshold }) => progressPercentage >= threshold)
-      ?.color || "#FF4D4F";
+      ?.color || "#0A3456";
 
   const copyLink = async () => {
     try {
@@ -45,22 +47,22 @@ const ProjectPage = () => {
 
   if (isLoading) {
     return (
-      <div className="spin">
-        <Spin size="large" />
-      </div>
+      <PageContainer>
+        <LoadingSpinner />
+      </PageContainer>
     );
   }
 
   if (isError) {
     return (
-      <div className="spin">
+      <PageContainer>
         <Alert message={`Қате: ${error.message}`} type="error" />
-      </div>
+      </PageContainer>
     );
   }
 
   return (
-    <div className="page-container">
+    <PageContainer>
       <Row
         gutter={[20, 20]}
         align="middle"
@@ -113,7 +115,7 @@ const ProjectPage = () => {
       </Row>
 
       <DonationModal isOpen={isOpen} setIsOpen={setIsOpen} />
-    </div>
+    </PageContainer>
   );
 };
 

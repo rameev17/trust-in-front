@@ -1,98 +1,76 @@
 import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import { TEXT_COLORS } from "../../helper/constants";
+import PageContainer from "../../components/PageContainer";
+import { useGetTeam } from "../../api/team";
+import useLocale from "../../locale/useLocale";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
-const teamData = [
-  {
-    name: "Ануарбек Хайрым",
-    role: "Атқарушы директор",
-    year: "Есік БИЛ ‘06",
-    contact: "+7 707 788 70 20",
-    image: require("../../images/kenes1.jpg"),
-  },
-  {
-    name: "Елемесов Ақжол",
-    role: "Астана қ. студент менеджері",
-    year: "Есік БИЛ ‘11",
-    contact: "+7 707 363 4115",
-    image: require("../../images/kenes3.PNG"),
-  },
-  {
-    name: "Абдулла Әбілмансұр",
-    role: "Алматы қ. студент менеджері",
-    year: "Есік БИЛ ‘23",
-    contact: "+7 708 718 3998",
-    image: require("../../images/kenes2.JPG"),
-  },
-];
 const TeamPage = () => {
+  const { locale } = useLocale();
+  const { data, isLoading, isError } = useGetTeam(locale);
+
+  if (isLoading) {
+    return (
+      <PageContainer>
+        <LoadingSpinner />
+      </PageContainer>
+    );
+  }
+
+  if (isError || !data) {
+    return (
+      <PageContainer>
+        <TeamContent>
+          <ErrorText>Ошибка загрузки данных</ErrorText>
+        </TeamContent>
+      </PageContainer>
+    );
+  }
+
   return (
     <PageContainer>
-      <Title>Біздің команда</Title>
-      <CardContainer>
-        {teamData.map((member, index) => (
-          <Card
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: index * 0.2 }}
-          >
-            <CardImage src={member.image} alt={`${member.name}'s image`} />
-            <Name>{member.name}</Name>
-            <Role>{member.role}</Role>
-            <p>{member.year}</p>
-            <Contact>{member.contact}</Contact>
-          </Card>
-        ))}
-      </CardContainer>
-      <Title>Бірлестіктің құрылтайшылары</Title>
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Нұрәлім Ұлан Нұрділдаұлы
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Смаилов Асет Есенбекович
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Омар Заңғар Омарұлы
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Рахимбеков Берик
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Сагинбеков Арай Амангельдыевич
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Акаев Ернар Нурланович
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Нұрмахан Ернар Серікұлы
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Нурсапаев Маргулан Кахарманович
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Серік Әділет Саятұлы
-        </ListItem>
-        <ListItem whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          Нұрболат Дінмұхамед Нұрболатұлы
-        </ListItem>
-      </div>
+      <TeamContent>
+        <Title>{data.team_title || "Біздің команда"}</Title>
+        <CardContainer>
+          {data.team_members?.map((member, index) => (
+            <Card
+              key={member.id || index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.2 }}
+            >
+              <CardImage src={member.image} alt={`${member.name}'s image`} />
+              <Name>{member.name}</Name>
+              <Role>{member.role}</Role>
+              <p>{member.year}</p>
+              <Contact>{member.contact}</Contact>
+            </Card>
+          ))}
+        </CardContainer>
+        <Title>{data.founders_title || "Бірлестіктің құрылтайшылары"}</Title>
+        <FoundersList>
+          {data.founders?.map((founder, index) => (
+            <ListItem
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              {founder.name}
+            </ListItem>
+          ))}
+        </FoundersList>
+      </TeamContent>
     </PageContainer>
   );
 };
 
-const PageContainer = styled.div`
+const TeamContent = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 70vh;
   align-items: center;
-  margin-top: 50px;
-  padding: 20px 150px;
-  justify-content: flex-start;
-  @media (max-width: 768px) {
-    padding: 0 20px;
-  }
+  width: 100%;
 `;
 
 const Title = styled.h1`
@@ -100,40 +78,49 @@ const Title = styled.h1`
   line-height: 48px;
   text-align: center;
   font-weight: 700;
-  color: #095d6a;
+  color: #0A3456;
   font-family: "Roboto", sans-serif;
   margin-left: 10px;
   width: 100%;
 `;
 
 const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
   margin-top: 30px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    justify-items: center;
+  }
 `;
 
 const Card = styled(motion.div)`
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
+  box-shadow: 0 4px 6px rgba(10, 52, 86, 0.1);
   padding: 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s;
-  width: 250px;
-  margin-bottom: 20px;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 400px;
 
   &:hover {
     transform: scale(1.05);
+    border-color: ${TEXT_COLORS.SECONDARY_COLOR};
+    box-shadow: 0 6px 12px rgba(21, 154, 215, 0.3);
   }
 
   @media (max-width: 768px) {
-    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
   }
 `;
 
@@ -153,30 +140,49 @@ const Name = styled.h3`
 
 const Role = styled.p`
   font-size: 1rem;
-  color: #777;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   margin: 5px 0;
 `;
 
 const Contact = styled.p`
   font-size: 1rem;
-  color: #333;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   margin: 5px 0;
 `;
 
+const FoundersList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+`;
+
 const ListItem = styled(motion.li)`
-  background-color: #f7f7f7;
+  background-color: #fff;
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(10, 52, 86, 0.1);
   font-size: 18px;
   line-height: 1.6;
   cursor: pointer;
   transition: all 0.3s ease;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
+  list-style: none;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(21, 154, 215, 0.3);
+    border-color: ${TEXT_COLORS.SECONDARY_COLOR};
+    background-color: ${TEXT_COLORS.SECONDARY_COLOR};
+    color: #fff;
   }
+`;
+
+const ErrorText = styled.p`
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
+  font-size: 18px;
+  text-align: center;
 `;
 
 export default TeamPage;

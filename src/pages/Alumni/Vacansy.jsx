@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useCreateVacancy, useGetVacansy } from "../../api/vacansy";
 import { Modal, Form, Input, Pagination as AntPagination } from "antd";
 import { TEXT_COLORS } from "../../helper/constants";
+import PageContainer from "../../components/PageContainer";
 
 const Vacancies = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +41,7 @@ const Vacancies = () => {
   };
 
   return (
-    <div className="page-container">
+    <PageContainer>
       <div className="content-wrapper">
         <div className="header">
           <h1 className="title primary-color">Ашық вакансиялар</h1>
@@ -166,7 +167,7 @@ const Vacancies = () => {
           </Form>
         </Modal>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
@@ -183,12 +184,14 @@ const VacancyGrid = styled.div`
 const Card = styled(motion.div)`
   background: #fff;
   border-radius: 8px;
+  border: 1px solid ${TEXT_COLORS.PRIMARY_COLOR};
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(10, 52, 86, 0.1);
   text-align: left;
 
   &:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(21, 154, 215, 0.3);
+    border-color: ${TEXT_COLORS.SECONDARY_COLOR};
   }
 `;
 
@@ -196,7 +199,7 @@ const CardTitle = styled.h2`
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #000;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -208,7 +211,7 @@ const CardTitle = styled.h2`
 
 const CardDescription = styled.p`
   font-size: 0.9rem;
-  color: #555;
+  color: ${TEXT_COLORS.PRIMARY_COLOR};
 
   @media (max-width: 768px) {
     font-size: 0.8rem;

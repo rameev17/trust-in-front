@@ -7,6 +7,10 @@ const SponsorsContainer = () => {
   const { t } = useTranslation();
   const { data: sponsors } = useGetSponsors();
 
+  if (!sponsors?.length || !sponsors) {
+    return null;
+  }
+
   return (
     <div className="main-page-wrapper">
       <div className="header">
