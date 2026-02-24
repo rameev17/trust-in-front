@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useGetStatistics } from "../../api/statistics";
-import backgroundImage from "../../images/background-image.png";
+import backgroundImage from "../../images/back-school.png";
 
 const MainInformation = ({ hanleOpenImageModal }) => {
   const [showCounters, setShowCounters] = useState(false);
