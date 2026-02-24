@@ -89,8 +89,8 @@ const ImageContainer = styled.div`
     height: 100%;
     background: linear-gradient(
       to bottom,
-      rgba(28, 28, 29, 0.05),
-      rgba(8, 8, 27, 0.02)
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.5)
     );
     z-index: 1;
   }
